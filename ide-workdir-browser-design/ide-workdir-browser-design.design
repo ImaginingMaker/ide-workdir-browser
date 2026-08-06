@@ -1,0 +1,2019 @@
+{
+  "data": [
+    {
+      "id": "page-icon-view",
+      "title": "主界面 · 图标视图",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771233,
+      "canvasData": {
+        "x": 0,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/icon-view.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "view-list",
+            "targetPageId": "page-list-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到列表视图"
+          },
+          {
+            "domId": "view-column",
+            "targetPageId": "page-column-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到分栏视图"
+          },
+          {
+            "domId": "view-icon",
+            "targetPageId": "page-icon-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到图标视图"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-list-view",
+      "title": "列表视图",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771234,
+      "canvasData": {
+        "x": 620,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/list-view.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "view-list",
+            "targetPageId": "page-list-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到列表视图"
+          },
+          {
+            "domId": "view-column",
+            "targetPageId": "page-column-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到分栏视图"
+          },
+          {
+            "domId": "view-icon",
+            "targetPageId": "page-icon-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到图标视图"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-column-view",
+      "title": "分栏视图",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771235,
+      "canvasData": {
+        "x": 1240,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/column-view.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "view-list",
+            "targetPageId": "page-list-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到列表视图"
+          },
+          {
+            "domId": "view-column",
+            "targetPageId": "page-column-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到分栏视图"
+          },
+          {
+            "domId": "view-icon",
+            "targetPageId": "page-icon-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到图标视图"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-preview-config",
+      "title": "预览：配置文件",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771236,
+      "canvasData": {
+        "x": 1860,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/preview-config.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-preview-markdown",
+      "title": "预览：Markdown",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771237,
+      "canvasData": {
+        "x": 2480,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/preview-markdown.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-preview-image",
+      "title": "预览：图片",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771238,
+      "canvasData": {
+        "x": 3100,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/preview-image.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-folder-stats",
+      "title": "文件夹统计",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771239,
+      "canvasData": {
+        "x": 3720,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/folder-stats.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-info-tab",
+      "title": "文件信息",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771240,
+      "canvasData": {
+        "x": 4340,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/info-tab.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-search-results",
+      "title": "搜索结果",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771241,
+      "canvasData": {
+        "x": 4960,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/search-results.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-context-menu",
+      "title": "右键菜单",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771242,
+      "canvasData": {
+        "x": 5580,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/context-menu.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          },
+          {
+            "domId": "context-menu-open",
+            "targetPageId": "page-preview-config",
+            "hideEdge": true,
+            "transitionLabel": "打开"
+          },
+          {
+            "domId": "context-menu-info",
+            "targetPageId": "page-info-tab",
+            "hideEdge": true,
+            "transitionLabel": "显示信息"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-multi-select",
+      "title": "多选状态",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771243,
+      "canvasData": {
+        "x": 6200,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/multi-select.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-zoom-75-icon",
+      "title": "缩放 75% · 图标",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771244,
+      "canvasData": {
+        "x": 6820,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/zoom-75-icon.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "view-list",
+            "targetPageId": "page-list-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到列表视图"
+          },
+          {
+            "domId": "view-column",
+            "targetPageId": "page-column-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到分栏视图"
+          },
+          {
+            "domId": "view-icon",
+            "targetPageId": "page-icon-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到图标视图"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-zoom-125-icon",
+      "title": "缩放 125% · 图标",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771245,
+      "canvasData": {
+        "x": 7440,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/zoom-125-icon.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "view-list",
+            "targetPageId": "page-list-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到列表视图"
+          },
+          {
+            "domId": "view-column",
+            "targetPageId": "page-column-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到分栏视图"
+          },
+          {
+            "domId": "view-icon",
+            "targetPageId": "page-icon-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到图标视图"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-zoom-150-icon",
+      "title": "缩放 150% · 图标",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771246,
+      "canvasData": {
+        "x": 8060,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/zoom-150-icon.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "view-list",
+            "targetPageId": "page-list-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到列表视图"
+          },
+          {
+            "domId": "view-column",
+            "targetPageId": "page-column-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到分栏视图"
+          },
+          {
+            "domId": "view-icon",
+            "targetPageId": "page-icon-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到图标视图"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-zoom-125-list",
+      "title": "缩放 125% · 列表",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771247,
+      "canvasData": {
+        "x": 8680,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/zoom-125-list.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "view-list",
+            "targetPageId": "page-list-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到列表视图"
+          },
+          {
+            "domId": "view-column",
+            "targetPageId": "page-column-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到分栏视图"
+          },
+          {
+            "domId": "view-icon",
+            "targetPageId": "page-icon-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到图标视图"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-zoom-125-column",
+      "title": "缩放 125% · 分栏",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771248,
+      "canvasData": {
+        "x": 9300,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/zoom-125-column.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "view-list",
+            "targetPageId": "page-list-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到列表视图"
+          },
+          {
+            "domId": "view-column",
+            "targetPageId": "page-column-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到分栏视图"
+          },
+          {
+            "domId": "view-icon",
+            "targetPageId": "page-icon-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到图标视图"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-empty-dir",
+      "title": "空目录",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771249,
+      "canvasData": {
+        "x": 9920,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/empty-dir.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-ide-not-installed",
+      "title": "IDE 未安装",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771250,
+      "canvasData": {
+        "x": 10540,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/ide-not-installed.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-permission-error",
+      "title": "权限错误",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771251,
+      "canvasData": {
+        "x": 11160,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/permission-error.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-partial-permission",
+      "title": "部分权限受限",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771252,
+      "canvasData": {
+        "x": 11780,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/partial-permission.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-long-filename",
+      "title": "超长文件名",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771253,
+      "canvasData": {
+        "x": 12400,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/long-filename.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-breadcrumb-overflow",
+      "title": "面包屑溢出",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771254,
+      "canvasData": {
+        "x": 13020,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/breadcrumb-overflow.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-large-dir-pagination",
+      "title": "大目录分页",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771255,
+      "canvasData": {
+        "x": 13640,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/large-dir-pagination.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-binary-preview",
+      "title": "二进制预览",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771256,
+      "canvasData": {
+        "x": 14260,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/binary-preview.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-large-text-truncate",
+      "title": "大文本截断",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771257,
+      "canvasData": {
+        "x": 14880,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/large-text-truncate.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-empty-file",
+      "title": "空文件",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771258,
+      "canvasData": {
+        "x": 15500,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/empty-file.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-unknown-ext",
+      "title": "未知扩展名",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771259,
+      "canvasData": {
+        "x": 16120,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/unknown-ext.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-non-utf8",
+      "title": "非 UTF-8 编码",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771260,
+      "canvasData": {
+        "x": 16740,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/non-utf8.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-symlink",
+      "title": "符号链接",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771261,
+      "canvasData": {
+        "x": 17360,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/symlink.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-search-no-result",
+      "title": "搜索无结果",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771262,
+      "canvasData": {
+        "x": 17980,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/search-no-result.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-search-too-many",
+      "title": "搜索结果过多",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771263,
+      "canvasData": {
+        "x": 18600,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/search-too-many.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-loading-state",
+      "title": "加载状态",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771264,
+      "canvasData": {
+        "x": 19220,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/loading-state.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-hidden-files",
+      "title": "显示隐藏文件",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771265,
+      "canvasData": {
+        "x": 19840,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/hidden-files.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-content-stale",
+      "title": "内容过期",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771266,
+      "canvasData": {
+        "x": 20460,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/content-stale.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-toolbar-overflow",
+      "title": "工具栏溢出",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771267,
+      "canvasData": {
+        "x": 21080,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/toolbar-overflow.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-statusbar-overflow",
+      "title": "状态栏溢出",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771268,
+      "canvasData": {
+        "x": 21700,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/statusbar-overflow.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-dark-icon-view",
+      "title": "深色 · 图标视图",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771269,
+      "canvasData": {
+        "x": 22320,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/dark-icon-view.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "view-list",
+            "targetPageId": "page-list-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到列表视图"
+          },
+          {
+            "domId": "view-column",
+            "targetPageId": "page-column-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到分栏视图"
+          },
+          {
+            "domId": "view-icon",
+            "targetPageId": "page-icon-view",
+            "hideEdge": true,
+            "transitionLabel": "切换到图标视图"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-narrow-window",
+      "title": "窄窗口",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771270,
+      "canvasData": {
+        "x": 22940,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/narrow-window.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-wide-window",
+      "title": "宽窗口",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771271,
+      "canvasData": {
+        "x": 23560,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/wide-window.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-sidebar-hidden",
+      "title": "隐藏边栏",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771272,
+      "canvasData": {
+        "x": 24180,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/sidebar-hidden.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-first-run",
+      "title": "首次运行",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771273,
+      "canvasData": {
+        "x": 24800,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/first-run.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-inspector-empty",
+      "title": "检查器空态",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771274,
+      "canvasData": {
+        "x": 25420,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/inspector-empty.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-window-inactive",
+      "title": "窗口失活",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771275,
+      "canvasData": {
+        "x": 26040,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/window-inactive.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-multi-select-stats",
+      "title": "多选统计",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771276,
+      "canvasData": {
+        "x": 26660,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/multi-select-stats.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-read-timeout",
+      "title": "读取超时",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771277,
+      "canvasData": {
+        "x": 27280,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/read-timeout.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-disk-unmounted",
+      "title": "磁盘卸载",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771278,
+      "canvasData": {
+        "x": 27900,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/disk-unmounted.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-file-locked",
+      "title": "文件被占用",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771279,
+      "canvasData": {
+        "x": 28520,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/file-locked.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-column-deep-scroll",
+      "title": "列视图深层滚动",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771280,
+      "canvasData": {
+        "x": 29140,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/column-deep-scroll.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-narrow-panel-constraint",
+      "title": "窄面板约束",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771281,
+      "canvasData": {
+        "x": 29760,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/narrow-panel-constraint.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-settings-ide",
+      "title": "设置 · IDE 管理",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771282,
+      "canvasData": {
+        "x": 30380,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/settings-ide.html",
+        "interactions": [
+          {
+            "domId": "btn-back-to-browser",
+            "targetPageId": "page-icon-view",
+            "hideEdge": true,
+            "transitionLabel": "返回浏览器"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-settings-appearance",
+      "title": "设置 · 外观",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771283,
+      "canvasData": {
+        "x": 31000,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/settings-appearance.html",
+        "interactions": [
+          {
+            "domId": "btn-back-to-browser",
+            "targetPageId": "page-icon-view",
+            "hideEdge": true,
+            "transitionLabel": "返回浏览器"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-settings-advanced",
+      "title": "设置 · 高级",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771284,
+      "canvasData": {
+        "x": 31620,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/settings-advanced.html",
+        "interactions": [
+          {
+            "domId": "btn-back-to-browser",
+            "targetPageId": "page-icon-view",
+            "hideEdge": true,
+            "transitionLabel": "返回浏览器"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-settings-about",
+      "title": "设置 · 关于",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771285,
+      "canvasData": {
+        "x": 32240,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/settings-about.html",
+        "interactions": [
+          {
+            "domId": "btn-back-to-browser",
+            "targetPageId": "page-icon-view",
+            "hideEdge": true,
+            "transitionLabel": "返回浏览器"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-dark-settings",
+      "title": "深色 · 设置",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771286,
+      "canvasData": {
+        "x": 32860,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/dark-settings.html",
+        "interactions": [
+          {
+            "domId": "btn-back-to-browser",
+            "targetPageId": "page-icon-view",
+            "hideEdge": true,
+            "transitionLabel": "返回浏览器"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-dark-inspector",
+      "title": "深色 · 检查器",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785463771287,
+      "canvasData": {
+        "x": 33480,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/dark-inspector.html",
+        "interactions": [
+          {
+            "domId": "btn-settings",
+            "targetPageId": "page-settings-ide",
+            "hideEdge": true,
+            "transitionLabel": "打开设置"
+          },
+          {
+            "domId": "toolbar-search",
+            "targetPageId": "page-search-results",
+            "hideEdge": true,
+            "transitionLabel": "搜索"
+          },
+          {
+            "domId": "btn-stats",
+            "targetPageId": "page-folder-stats",
+            "hideEdge": true,
+            "transitionLabel": "查看统计"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "autoLayout": true,
+    "deviceType": "desktop",
+    "projectName": "IDE 工作目录浏览器",
+    "designLibrary": null
+  }
+}

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preflight</title>
+    <style id="theme-vars">
+/* ============================================================
+   IDE Workdir Browser — macOS Design Tokens
+   Electron macOS desktop app, Finder-style UI
+   ============================================================ */
+
+:root {
+  /* Fonts */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", "PingFang SC", Arial, sans-serif;
+  --font-mono: "SF Mono", ui-monospace, "JetBrains Mono", Menlo, Monaco, Consolas, monospace;
+
+  /* Brand / system colors */
+  --color-accent: #007AFF;
+  --color-accent-hover: #0066D6;
+  --color-folder: #5AC8FA;
+  --color-symlink: #8E8E93;
+  --color-destructive: #FF3B30;
+
+  /* Traffic lights */
+  --traffic-red: #FF5F57;
+  --traffic-yellow: #FEBC2E;
+  --traffic-green: #28C840;
+
+  /* Light theme surfaces */
+  --bg-content: #FFFFFF;
+  --bg-sidebar: rgba(246, 246, 246, 0.8);
+  --bg-toolbar: #F7F7F7;
+  --bg-row-hover: rgba(0, 0, 0, 0.05);
+  --bg-row-selected: var(--color-accent);
+  --bg-inactive: rgba(0, 0, 0, 0.03);
+  --bg-selected-inactive: rgba(0, 0, 0, 0.10);
+  --bg-skeleton: rgba(0, 0, 0, 0.06);
+
+  /* Text */
+  --text-primary: #1D1D1F;
+  --text-secondary: #86868B;
+  --text-tertiary: #AEAEB2;
+  --text-on-selected: #FFFFFF;
+
+  /* Separators & borders */
+  --separator: rgba(0, 0, 0, 0.10);
+  --border: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.15);
+
+  /* 4pt grid spacing (rem) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  /* Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1.25rem;
+  --radius-full: 9999px;
+
+  /* Layout dimensions */
+  --sidebar-width: 13.75rem;
+  --sidebar-min: 9rem;
+  --sidebar-max: 20rem;
+  --sidebar-collapsed: 3.5rem;
+  --toolbar-height: 2.75rem;
+  --statusbar-height: 1.375rem;
+  --icon-tile: 6rem;
+  --icon-size: 3rem;
+  --inspector-width: 30rem;
+  --inspector-min: 22rem;
+  --inspector-max: 40rem;
+  --content-min: 18rem;
+
+  /* Shadows */
+  --shadow-window: 0 1.5rem 3.75rem rgba(0, 0, 0, 0.25);
+  --shadow-panel: -0.5rem 0 1.5rem rgba(0, 0, 0, 0.12);
+  --shadow-dropdown: 0 0.25rem 1rem rgba(0, 0, 0, 0.15);
+  --shadow-toolbar: 0 0.0625rem 0.25rem rgba(0, 0, 0, 0.06);
+
+  /* Focus ring */
+  --focus-ring: 0 0 0 0.1875rem var(--color-accent);
+
+  /* Scrollbar (macOS overlay style) */
+  --scrollbar-thumb: rgba(0, 0, 0, 0.25);
+  --scrollbar-thumb-hover: rgba(0, 0, 0, 0.4);
+
+  /* ---- Semantic aliases (required by apply-html-head-contract.mjs) ---- */
+  --background: var(--bg-content);
+  --foreground: var(--text-primary);
+  --card: var(--bg-content);
+  --card-foreground: var(--text-primary);
+  --popover: var(--bg-content);
+  --popover-foreground: var(--text-primary);
+  --primary: var(--color-accent);
+  --primary-foreground: var(--text-on-selected);
+  --secondary: var(--bg-inactive);
+  --secondary-foreground: var(--text-primary);
+  --muted: var(--bg-inactive);
+  --muted-foreground: var(--text-secondary);
+  --accent: var(--bg-row-hover);
+  --accent-foreground: var(--text-primary);
+  --destructive: var(--color-destructive);
+  --destructive-foreground: #FFFFFF;
+  --border-input: var(--border);
+  --input: var(--border);
+  --ring: var(--color-accent);
+  --chart-1: #007AFF;
+  --chart-2: #5AC8FA;
+  --chart-3: #34C759;
+  --chart-4: #FF9500;
+  --chart-5: #AF52DE;
+  --sidebar-bg: var(--bg-sidebar);
+  --sidebar-foreground: var(--text-primary);
+  --sidebar-primary: var(--color-accent);
+  --sidebar-primary-foreground: var(--text-on-selected);
+  --sidebar-accent: var(--bg-row-hover);
+  --sidebar-accent-foreground: var(--text-primary);
+  --sidebar-border: var(--separator);
+  --radius-small: var(--radius-sm);
+  --radius-medium: var(--radius-md);
+  --radius-large: var(--radius-lg);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar-bg);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+}
+
+/* ---- Dark theme ---- */
+[data-theme="dark"] {
+  --color-accent: #0A84FF;
+  --color-accent-hover: #007AFF;
+  --color-folder: #64D2FF;
+  --color-destructive: #FF453A;
+
+  --bg-content: #1E1E1E;
+  --bg-sidebar: rgba(40, 40, 40, 0.8);
+  --bg-toolbar: #2A2A2A;
+  --bg-row-hover: rgba(255, 255, 255, 0.08);
+  --bg-row-selected: var(--color-accent);
+  --bg-inactive: rgba(255, 255, 255, 0.04);
+  --bg-selected-inactive: rgba(255, 255, 255, 0.12);
+  --bg-skeleton: rgba(255, 255, 255, 0.06);
+
+  --text-primary: #F5F5F7;
+  --text-secondary: #98989D;
+  --text-tertiary: #636366;
+  --text-on-selected: #FFFFFF;
+
+  --separator: rgba(255, 255, 255, 0.10);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.15);
+
+  --shadow-window: 0 1.5rem 3.75rem rgba(0, 0, 0, 0.5);
+  --shadow-panel: -0.5rem 0 1.5rem rgba(0, 0, 0, 0.4);
+  --shadow-dropdown: 0 0.25rem 1rem rgba(0, 0, 0, 0.4);
+
+  --scrollbar-thumb: rgba(255, 255, 255, 0.25);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.4);
+
+  /* Re-map semantic aliases for dark */
+  --background: var(--bg-content);
+  --foreground: var(--text-primary);
+  --card: var(--bg-content);
+  --card-foreground: var(--text-primary);
+  --popover: var(--bg-content);
+  --popover-foreground: var(--text-primary);
+  --primary: var(--color-accent);
+  --primary-foreground: var(--text-on-selected);
+  --secondary: var(--bg-inactive);
+  --secondary-foreground: var(--text-primary);
+  --muted: var(--bg-inactive);
+  --muted-foreground: var(--text-secondary);
+  --accent: var(--bg-row-hover);
+  --accent-foreground: var(--text-primary);
+  --destructive: var(--color-destructive);
+  --destructive-foreground: #FFFFFF;
+  --sidebar-bg: var(--bg-sidebar);
+  --sidebar-foreground: var(--text-primary);
+  --sidebar-primary: var(--color-accent);
+  --sidebar-accent: var(--bg-row-hover);
+  --sidebar-border: var(--separator);
+}
+
+/* ---- Zoom levels (root font-size) ---- */
+html[data-zoom="75"] { font-size: 12px; }
+html[data-zoom="100"] { font-size: 16px; }
+html[data-zoom="125"] { font-size: 20px; }
+html[data-zoom="150"] { font-size: 24px; }
+
+/* ---- Typography classes ---- */
+.text-display { font-family: var(--font-sans); font-weight: 700; font-size: 1.75rem; line-height: 1.25; letter-spacing: -0.02em; }
+.text-heading { font-family: var(--font-sans); font-weight: 600; font-size: 1.125rem; line-height: 1.35; }
+.text-body { font-family: var(--font-sans); font-weight: 400; font-size: 0.8125rem; line-height: 1.45; }
+.text-caption { font-family: var(--font-sans); font-weight: 400; font-size: 0.6875rem; line-height: 1.35; color: var(--text-secondary); }
+.text-mono { font-family: var(--font-mono); font-size: 0.8125rem; line-height: 1.5; }
+.text-mono-sm { font-family: var(--font-mono); font-size: 0.75rem; line-height: 1.5; }
+
+/* ---- Window inactive state ---- */
+html:not(.is-active) {
+  --bg-row-selected: var(--bg-selected-inactive);
+  --traffic-red: rgba(0,0,0,0.15);
+  --traffic-yellow: rgba(0,0,0,0.15);
+  --traffic-green: rgba(0,0,0,0.15);
+}
+[data-theme="dark"] html:not(.is-active),
+html[data-theme="dark"]:not(.is-active) {
+  --traffic-red: rgba(255,255,255,0.15);
+  --traffic-yellow: rgba(255,255,255,0.15);
+  --traffic-green: rgba(255,255,255,0.15);
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+    --color-sidebar: var(--sidebar-bg);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+    --radius-sm: var(--radius-sm);
+    --radius-md: var(--radius-md);
+    --radius-lg: var(--radius-lg);
+    --radius-xl: var(--radius-xl);
+  }
+  @layer base {
+    body { background: var(--background); color: var(--foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--background); }
+      .text-background { color: var(--background); }
+      .border-background { border-color: var(--background); }
+      .ring-background { --tw-ring-color: var(--background); }
+      .bg-foreground { background-color: var(--foreground); }
+      .text-foreground { color: var(--foreground); }
+      .border-foreground { border-color: var(--foreground); }
+      .ring-foreground { --tw-ring-color: var(--foreground); }
+      .bg-card { background-color: var(--card); }
+      .text-card { color: var(--card); }
+      .border-card { border-color: var(--card); }
+      .ring-card { --tw-ring-color: var(--card); }
+      .bg-card-foreground { background-color: var(--card-foreground); }
+      .text-card-foreground { color: var(--card-foreground); }
+      .border-card-foreground { border-color: var(--card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--card-foreground); }
+      .bg-popover { background-color: var(--popover); }
+      .text-popover { color: var(--popover); }
+      .border-popover { border-color: var(--popover); }
+      .ring-popover { --tw-ring-color: var(--popover); }
+      .bg-popover-foreground { background-color: var(--popover-foreground); }
+      .text-popover-foreground { color: var(--popover-foreground); }
+      .border-popover-foreground { border-color: var(--popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--popover-foreground); }
+      .bg-primary { background-color: var(--primary); }
+      .text-primary { color: var(--primary); }
+      .border-primary { border-color: var(--primary); }
+      .ring-primary { --tw-ring-color: var(--primary); }
+      .bg-primary-foreground { background-color: var(--primary-foreground); }
+      .text-primary-foreground { color: var(--primary-foreground); }
+      .border-primary-foreground { border-color: var(--primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--primary-foreground); }
+      .bg-secondary { background-color: var(--secondary); }
+      .text-secondary { color: var(--secondary); }
+      .border-secondary { border-color: var(--secondary); }
+      .ring-secondary { --tw-ring-color: var(--secondary); }
+      .bg-secondary-foreground { background-color: var(--secondary-foreground); }
+      .text-secondary-foreground { color: var(--secondary-foreground); }
+      .border-secondary-foreground { border-color: var(--secondary-foreground); }
+      .ring-secondary-foreground { --tw-ring-color: var(--secondary-foreground); }
+      .bg-muted { background-color: var(--muted); }
+      .text-muted { color: var(--muted); }
+      .border-muted { border-color: var(--muted); }
+      .ring-muted { --tw-ring-color: var(--muted); }
+      .bg-muted-foreground { background-color: var(--muted-foreground); }
+      .text-muted-foreground { color: var(--muted-foreground); }
+      .border-muted-foreground { border-color: var(--muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--muted-foreground); }
+      .bg-accent { background-color: var(--accent); }
+      .text-accent { color: var(--accent); }
+      .border-accent { border-color: var(--accent); }
+      .ring-accent { --tw-ring-color: var(--accent); }
+      .bg-accent-foreground { background-color: var(--accent-foreground); }
+      .text-accent-foreground { color: var(--accent-foreground); }
+      .border-accent-foreground { border-color: var(--accent-foreground); }
+      .ring-accent-foreground { --tw-ring-color: var(--accent-foreground); }
+      .bg-destructive { background-color: var(--destructive); }
+      .text-destructive { color: var(--destructive); }
+      .border-destructive { border-color: var(--destructive); }
+      .ring-destructive { --tw-ring-color: var(--destructive); }
+      .bg-destructive-foreground { background-color: var(--destructive-foreground); }
+      .text-destructive-foreground { color: var(--destructive-foreground); }
+      .border-destructive-foreground { border-color: var(--destructive-foreground); }
+      .ring-destructive-foreground { --tw-ring-color: var(--destructive-foreground); }
+      .bg-border { background-color: var(--border); }
+      .text-border { color: var(--border); }
+      .border-border { border-color: var(--border); }
+      .ring-border { --tw-ring-color: var(--border); }
+      .bg-input { background-color: var(--input); }
+      .text-input { color: var(--input); }
+      .border-input { border-color: var(--input); }
+      .ring-input { --tw-ring-color: var(--input); }
+      .bg-ring { background-color: var(--ring); }
+      .text-ring { color: var(--ring); }
+      .border-ring { border-color: var(--ring); }
+      .ring-ring { --tw-ring-color: var(--ring); }
+      .bg-sidebar { background-color: var(--sidebar-bg); }
+      .text-sidebar { color: var(--sidebar-bg); }
+      .border-sidebar { border-color: var(--sidebar-bg); }
+      .ring-sidebar { --tw-ring-color: var(--sidebar-bg); }
+      .bg-sidebar-foreground { background-color: var(--sidebar-foreground); }
+      .text-sidebar-foreground { color: var(--sidebar-foreground); }
+      .border-sidebar-foreground { border-color: var(--sidebar-foreground); }
+      .ring-sidebar-foreground { --tw-ring-color: var(--sidebar-foreground); }
+      .bg-sidebar-primary { background-color: var(--sidebar-primary); }
+      .text-sidebar-primary { color: var(--sidebar-primary); }
+      .border-sidebar-primary { border-color: var(--sidebar-primary); }
+      .ring-sidebar-primary { --tw-ring-color: var(--sidebar-primary); }
+      .bg-sidebar-primary-foreground { background-color: var(--sidebar-primary-foreground); }
+      .text-sidebar-primary-foreground { color: var(--sidebar-primary-foreground); }
+      .border-sidebar-primary-foreground { border-color: var(--sidebar-primary-foreground); }
+      .ring-sidebar-primary-foreground { --tw-ring-color: var(--sidebar-primary-foreground); }
+      .bg-sidebar-accent { background-color: var(--sidebar-accent); }
+      .text-sidebar-accent { color: var(--sidebar-accent); }
+      .border-sidebar-accent { border-color: var(--sidebar-accent); }
+      .ring-sidebar-accent { --tw-ring-color: var(--sidebar-accent); }
+      .bg-sidebar-accent-foreground { background-color: var(--sidebar-accent-foreground); }
+      .text-sidebar-accent-foreground { color: var(--sidebar-accent-foreground); }
+      .border-sidebar-accent-foreground { border-color: var(--sidebar-accent-foreground); }
+      .ring-sidebar-accent-foreground { --tw-ring-color: var(--sidebar-accent-foreground); }
+      .bg-sidebar-border { background-color: var(--sidebar-border); }
+      .text-sidebar-border { color: var(--sidebar-border); }
+      .border-sidebar-border { border-color: var(--sidebar-border); }
+      .ring-sidebar-border { --tw-ring-color: var(--sidebar-border); }
+      .bg-chart-1 { background-color: var(--chart-1); }
+      .text-chart-1 { color: var(--chart-1); }
+      .border-chart-1 { border-color: var(--chart-1); }
+      .ring-chart-1 { --tw-ring-color: var(--chart-1); }
+      .bg-chart-2 { background-color: var(--chart-2); }
+      .text-chart-2 { color: var(--chart-2); }
+      .border-chart-2 { border-color: var(--chart-2); }
+      .ring-chart-2 { --tw-ring-color: var(--chart-2); }
+      .bg-chart-3 { background-color: var(--chart-3); }
+      .text-chart-3 { color: var(--chart-3); }
+      .border-chart-3 { border-color: var(--chart-3); }
+      .ring-chart-3 { --tw-ring-color: var(--chart-3); }
+      .bg-chart-4 { background-color: var(--chart-4); }
+      .text-chart-4 { color: var(--chart-4); }
+      .border-chart-4 { border-color: var(--chart-4); }
+      .ring-chart-4 { --tw-ring-color: var(--chart-4); }
+      .bg-chart-5 { background-color: var(--chart-5); }
+      .text-chart-5 { color: var(--chart-5); }
+      .border-chart-5 { border-color: var(--chart-5); }
+      .ring-chart-5 { --tw-ring-color: var(--chart-5); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+    <main>
+    </main>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>检查器空态（无选中）</title>
+    <style id="theme-vars">
+:root {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SF Mono", SFMono-Regular, ui-monospace, Menlo, Monaco, "Courier New", monospace;
+  --traffic-red: #ff5f56;
+  --traffic-yellow: #ffbd2e;
+  --traffic-green: #27c93f;
+  --sidebar-width: 13rem;
+  --toolbar-height: 2.75rem;
+  --inspector-width: 16rem;
+  --content-min: 16rem;
+  --statusbar-height: 1.5rem;
+  --background: #ffffff;
+  --foreground: #1d1d1f;
+  --card: #ffffff;
+  --card-foreground: #1d1d1f;
+  --popover: #ffffff;
+  --popover-foreground: #1d1d1f;
+  --primary: #007aff;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f5f7;
+  --secondary-foreground: #1d1d1f;
+  --muted: #f5f5f7;
+  --muted-foreground: #6e6e73;
+  --accent: #e8e8ed;
+  --accent-foreground: #1d1d1f;
+  --destructive: #ff3b30;
+  --destructive-foreground: #ffffff;
+  --border: #d2d2d7;
+  --input: #d2d2d7;
+  --ring: #007aff;
+  --sidebar: #f5f5f7;
+  --sidebar-foreground: #1d1d1f;
+  --sidebar-primary: #007aff;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e8e8ed;
+  --sidebar-accent-foreground: #1d1d1f;
+  --toolbar: #f5f5f7;
+  --panel: rgba(255, 255, 255, 0.85);
+  --shadow-panel: 0 0 1.25rem rgba(0, 0, 0, 0.05);
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --text-caption: 0.6875rem;
+  --text-body: 0.8125rem;
+  --text-mono-sm: 0.6875rem;
+  --chart-1: #007aff;
+  --chart-2: #34c759;
+  --chart-3: #ff9500;
+  --chart-4: #af52de;
+  --chart-5: #ff3b30;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+    --radius-sm: var(--radius-sm);
+    --radius-md: var(--radius-md);
+    --radius-lg: var(--radius-lg);
+    --radius-xl: var(--radius-xl);
+  }
+  @layer base {
+    body { background: var(--background); color: var(--foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--background); }
+      .text-background { color: var(--background); }
+      .border-background { border-color: var(--background); }
+      .ring-background { --tw-ring-color: var(--background); }
+      .bg-foreground { background-color: var(--foreground); }
+      .text-foreground { color: var(--foreground); }
+      .border-foreground { border-color: var(--foreground); }
+      .ring-foreground { --tw-ring-color: var(--foreground); }
+      .bg-card { background-color: var(--card); }
+      .text-card { color: var(--card); }
+      .border-card { border-color: var(--card); }
+      .ring-card { --tw-ring-color: var(--card); }
+      .bg-card-foreground { background-color: var(--card-foreground); }
+      .text-card-foreground { color: var(--card-foreground); }
+      .border-card-foreground { border-color: var(--card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--card-foreground); }
+      .bg-popover { background-color: var(--popover); }
+      .text-popover { color: var(--popover); }
+      .border-popover { border-color: var(--popover); }
+      .ring-popover { --tw-ring-color: var(--popover); }
+      .bg-popover-foreground { background-color: var(--popover-foreground); }
+      .text-popover-foreground { color: var(--popover-foreground); }
+      .border-popover-foreground { border-color: var(--popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--popover-foreground); }
+      .bg-primary { background-color: var(--primary); }
+      .text-primary { color: var(--primary); }
+      .border-primary { border-color: var(--primary); }
+      .ring-primary { --tw-ring-color: var(--primary); }
+      .bg-primary-foreground { background-color: var(--primary-foreground); }
+      .text-primary-foreground { color: var(--primary-foreground); }
+      .border-primary-foreground { border-color: var(--primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--primary-foreground); }
+      .bg-secondary { background-color: var(--secondary); }
+      .text-secondary { color: var(--secondary); }
+      .border-secondary { border-color: var(--secondary); }
+      .ring-secondary { --tw-ring-color: var(--secondary); }
+      .bg-secondary-foreground { background-color: var(--secondary-foreground); }
+      .text-secondary-foreground { color: var(--secondary-foreground); }
+      .border-secondary-foreground { border-color: var(--secondary-foreground); }
+      .ring-secondary-foreground { --tw-ring-color: var(--secondary-foreground); }
+      .bg-muted { background-color: var(--muted); }
+      .text-muted { color: var(--muted); }
+      .border-muted { border-color: var(--muted); }
+      .ring-muted { --tw-ring-color: var(--muted); }
+      .bg-muted-foreground { background-color: var(--muted-foreground); }
+      .text-muted-foreground { color: var(--muted-foreground); }
+      .border-muted-foreground { border-color: var(--muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--muted-foreground); }
+      .bg-accent { background-color: var(--accent); }
+      .text-accent { color: var(--accent); }
+      .border-accent { border-color: var(--accent); }
+      .ring-accent { --tw-ring-color: var(--accent); }
+      .bg-accent-foreground { background-color: var(--accent-foreground); }
+      .text-accent-foreground { color: var(--accent-foreground); }
+      .border-accent-foreground { border-color: var(--accent-foreground); }
+      .ring-accent-foreground { --tw-ring-color: var(--accent-foreground); }
+      .bg-destructive { background-color: var(--destructive); }
+      .text-destructive { color: var(--destructive); }
+      .border-destructive { border-color: var(--destructive); }
+      .ring-destructive { --tw-ring-color: var(--destructive); }
+      .bg-destructive-foreground { background-color: var(--destructive-foreground); }
+      .text-destructive-foreground { color: var(--destructive-foreground); }
+      .border-destructive-foreground { border-color: var(--destructive-foreground); }
+      .ring-destructive-foreground { --tw-ring-color: var(--destructive-foreground); }
+      .bg-border { background-color: var(--border); }
+      .text-border { color: var(--border); }
+      .border-border { border-color: var(--border); }
+      .ring-border { --tw-ring-color: var(--border); }
+      .bg-input { background-color: var(--input); }
+      .text-input { color: var(--input); }
+      .border-input { border-color: var(--input); }
+      .ring-input { --tw-ring-color: var(--input); }
+      .bg-ring { background-color: var(--ring); }
+      .text-ring { color: var(--ring); }
+      .border-ring { border-color: var(--ring); }
+      .ring-ring { --tw-ring-color: var(--ring); }
+      .bg-sidebar { background-color: var(--sidebar); }
+      .text-sidebar { color: var(--sidebar); }
+      .border-sidebar { border-color: var(--sidebar); }
+      .ring-sidebar { --tw-ring-color: var(--sidebar); }
+      .bg-sidebar-foreground { background-color: var(--sidebar-foreground); }
+      .text-sidebar-foreground { color: var(--sidebar-foreground); }
+      .border-sidebar-foreground { border-color: var(--sidebar-foreground); }
+      .ring-sidebar-foreground { --tw-ring-color: var(--sidebar-foreground); }
+      .bg-sidebar-primary { background-color: var(--sidebar-primary); }
+      .text-sidebar-primary { color: var(--sidebar-primary); }
+      .border-sidebar-primary { border-color: var(--sidebar-primary); }
+      .ring-sidebar-primary { --tw-ring-color: var(--sidebar-primary); }
+      .bg-sidebar-primary-foreground { background-color: var(--sidebar-primary-foreground); }
+      .text-sidebar-primary-foreground { color: var(--sidebar-primary-foreground); }
+      .border-sidebar-primary-foreground { border-color: var(--sidebar-primary-foreground); }
+      .ring-sidebar-primary-foreground { --tw-ring-color: var(--sidebar-primary-foreground); }
+      .bg-sidebar-accent { background-color: var(--sidebar-accent); }
+      .text-sidebar-accent { color: var(--sidebar-accent); }
+      .border-sidebar-accent { border-color: var(--sidebar-accent); }
+      .ring-sidebar-accent { --tw-ring-color: var(--sidebar-accent); }
+      .bg-sidebar-accent-foreground { background-color: var(--sidebar-accent-foreground); }
+      .text-sidebar-accent-foreground { color: var(--sidebar-accent-foreground); }
+      .border-sidebar-accent-foreground { border-color: var(--sidebar-accent-foreground); }
+      .ring-sidebar-accent-foreground { --tw-ring-color: var(--sidebar-accent-foreground); }
+      .bg-chart-1 { background-color: var(--chart-1); }
+      .text-chart-1 { color: var(--chart-1); }
+      .border-chart-1 { border-color: var(--chart-1); }
+      .ring-chart-1 { --tw-ring-color: var(--chart-1); }
+      .bg-chart-2 { background-color: var(--chart-2); }
+      .text-chart-2 { color: var(--chart-2); }
+      .border-chart-2 { border-color: var(--chart-2); }
+      .ring-chart-2 { --tw-ring-color: var(--chart-2); }
+      .bg-chart-3 { background-color: var(--chart-3); }
+      .text-chart-3 { color: var(--chart-3); }
+      .border-chart-3 { border-color: var(--chart-3); }
+      .ring-chart-3 { --tw-ring-color: var(--chart-3); }
+      .bg-chart-4 { background-color: var(--chart-4); }
+      .text-chart-4 { color: var(--chart-4); }
+      .border-chart-4 { border-color: var(--chart-4); }
+      .ring-chart-4 { --tw-ring-color: var(--chart-4); }
+      .bg-chart-5 { background-color: var(--chart-5); }
+      .text-chart-5 { color: var(--chart-5); }
+      .border-chart-5 { border-color: var(--chart-5); }
+      .ring-chart-5 { --tw-ring-color: var(--chart-5); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+<style id="critical-layout">
+  .icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr)); gap: 1rem; }
+</style>
+<!-- BEGIN project-shell.html -->
+<div id="app-window" class="relative flex flex-col w-full min-h-screen overflow-hidden rounded-xl shadow-[0_1.5rem_3.75rem_rgba(0,0,0,0.25)] bg-background text-foreground" style="font-family: var(--font-sans);">
+  <div data-region="titlebar" class="app-region-drag flex h-11 shrink-0 items-center justify-between border-b border-border bg-sidebar/80 px-4 backdrop-blur-md">
+    <div class="flex items-center gap-2">
+      <span class="inline-block h-3 w-3 rounded-full" style="background-color: var(--traffic-red);"></span>
+      <span class="inline-block h-3 w-3 rounded-full" style="background-color: var(--traffic-yellow);"></span>
+      <span class="inline-block h-3 w-3 rounded-full" style="background-color: var(--traffic-green);"></span>
+    </div>
+    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-caption text-muted-foreground" data-slot="window-title">IDE 工作目录浏览器</div>
+    <div class="w-16"></div>
+  </div>
+
+  <div id="app-body" class="flex flex-1 overflow-hidden">
+    <!-- BEGIN browser-shell.html -->
+<aside id="browser-sidebar" data-region="sidebar" data-slot="sidebar-state" class="flex w-[var(--sidebar-width)] shrink-0 flex-col border-r border-border bg-sidebar/80 backdrop-blur-md">
+  <div class="flex items-center justify-between px-3 py-2">
+    <span class="text-caption font-semibold uppercase tracking-wide text-muted-foreground">IDE</span>
+    <button data-dom-id="btn-toggle-sidebar" class="rounded p-1 text-muted-foreground hover:bg-accent hover:text-accent-foreground" title="收起边栏">
+      <i data-lucide="panel-left" class="h-4 w-4"></i>
+    </button>
+  </div>
+  <nav class="flex-1 overflow-y-auto px-2 pb-2" aria-label="IDE 列表">
+    <ul class="space-y-0.5">
+      <li>
+        <button data-dom-id="nav-ide-codex" data-ide="codex" data-slot="active-ide" data-active="true" class="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-body text-foreground hover:bg-accent hover:text-accent-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground">
+          <i data-lucide="box" class="h-4 w-4 shrink-0"></i>
+          <span class="truncate">Codex</span>
+          <span class="ml-auto text-mono-sm opacity-70">~/.codex</span>
+        </button>
+      </li>
+      <li>
+        <button data-dom-id="nav-ide-claude" data-ide="claude" data-slot="active-ide" class="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-body text-foreground hover:bg-accent hover:text-accent-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground">
+          <i data-lucide="message-square" class="h-4 w-4 shrink-0"></i>
+          <span class="truncate">Claude Code</span>
+          <span class="ml-auto text-mono-sm opacity-70">~/.claude</span>
+        </button>
+      </li>
+      <li>
+        <button data-dom-id="nav-ide-trae" data-ide="trae" data-slot="active-ide" class="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-body text-foreground hover:bg-accent hover:text-accent-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground">
+          <i data-lucide="zap" class="h-4 w-4 shrink-0"></i>
+          <span class="truncate">Trae</span>
+          <span class="ml-auto text-mono-sm opacity-70">~/.trae-cn</span>
+        </button>
+      </li>
+      <li>
+        <button data-dom-id="nav-ide-cursor" data-ide="cursor" data-slot="active-ide" class="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-body text-foreground hover:bg-accent hover:text-accent-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground">
+          <i data-lucide="sparkles" class="h-4 w-4 shrink-0"></i>
+          <span class="truncate">Cursor</span>
+          <span class="ml-auto text-mono-sm opacity-70">~/.cursor</span>
+        </button>
+      </li>
+      <li>
+        <button data-dom-id="nav-ide-zed" data-ide="zed" data-slot="active-ide" class="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-body text-foreground hover:bg-accent hover:text-accent-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground">
+          <i data-lucide="bolt" class="h-4 w-4 shrink-0"></i>
+          <span class="truncate">Zed</span>
+          <span class="ml-auto text-mono-sm opacity-70">~/.zed</span>
+        </button>
+      </li>
+      <li>
+        <button data-dom-id="nav-ide-vscode" data-ide="vscode" data-slot="active-ide" class="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-body text-foreground hover:bg-accent hover:text-accent-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground">
+          <i data-lucide="braces" class="h-4 w-4 shrink-0"></i>
+          <span class="truncate">VS Code</span>
+          <span class="ml-auto text-mono-sm opacity-70">~/.vscode</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+  <div class="border-t border-border p-2">
+    <button data-dom-id="btn-settings" class="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-body text-muted-foreground hover:bg-accent hover:text-accent-foreground">
+      <i data-lucide="settings" class="h-4 w-4 shrink-0"></i>
+      <span>设置</span>
+    </button>
+  </div>
+</aside>
+
+<div class="flex min-w-0 flex-1 flex-col bg-background">
+  <header data-region="toolbar" class="flex h-[var(--toolbar-height)] shrink-0 items-center gap-2 border-b border-border bg-toolbar px-3">
+    <div class="flex items-center gap-1">
+      <button data-dom-id="btn-nav-back" class="rounded p-1 text-muted-foreground hover:bg-accent hover:text-accent-foreground" title="后退">
+        <i data-lucide="chevron-left" class="h-4 w-4"></i>
+      </button>
+      <button data-dom-id="btn-nav-forward" class="rounded p-1 text-muted-foreground hover:bg-accent hover:text-accent-foreground" title="前进">
+        <i data-lucide="chevron-right" class="h-4 w-4"></i>
+      </button>
+    </div>
+
+    <div class="flex items-center rounded-md border border-border bg-muted p-0.5">
+      <button data-dom-id="view-icon" data-active="true" data-view="icon" class="rounded px-2 py-0.5 text-caption text-muted-foreground hover:bg-accent hover:text-accent-foreground data-[active=true]:bg-background data-[active=true]:text-foreground data-[active=true]:shadow-sm" title="图标视图">
+        <i data-lucide="layout-grid" class="h-4 w-4"></i>
+      </button>
+      <button data-dom-id="view-list" data-view="list" class="rounded px-2 py-0.5 text-caption text-muted-foreground hover:bg-accent hover:text-accent-foreground data-[active=true]:bg-background data-[active=true]:text-foreground data-[active=true]:shadow-sm" title="列表视图">
+        <i data-lucide="list" class="h-4 w-4"></i>
+      </button>
+      <button data-dom-id="view-column" data-view="column" class="rounded px-2 py-0.5 text-caption text-muted-foreground hover:bg-accent hover:text-accent-foreground data-[active=true]:bg-background data-[active=true]:text-foreground data-[active=true]:shadow-sm" title="分栏视图">
+        <i data-lucide="columns-3" class="h-4 w-4"></i>
+      </button>
+    </div>
+
+    <nav data-region="breadcrumb" data-slot="breadcrumb-path" class="flex min-w-0 flex-1 items-center gap-1 overflow-hidden text-body">
+      <button class="truncate rounded px-1 py-0.5 text-muted-foreground hover:bg-accent hover:text-accent-foreground">Codex</button>
+      <i data-lucide="chevron-right" class="h-3.5 w-3.5 shrink-0 text-muted-foreground"></i>
+      <button class="truncate rounded px-1 py-0.5 text-muted-foreground hover:bg-accent hover:text-accent-foreground">projects</button>
+      <i data-lucide="chevron-right" class="h-3.5 w-3.5 shrink-0 text-muted-foreground"></i>
+      <span class="truncate font-medium text-foreground">my-app</span>
+    </nav>
+
+    <div class="relative hidden md:block">
+      <i data-lucide="search" class="pointer-events-none absolute left-2 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground"></i>
+      <input data-dom-id="toolbar-search" type="search" placeholder="搜索" class="h-7 w-40 rounded-md border border-border bg-background pl-7 pr-2 text-body text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" />
+    </div>
+
+    <div class="flex items-center gap-1">
+      <button data-dom-id="btn-stats" class="rounded p-1 text-muted-foreground hover:bg-accent hover:text-accent-foreground" title="统计">
+        <i data-lucide="bar-chart-2" class="h-4 w-4"></i>
+      </button>
+      <button data-dom-id="btn-refresh" class="rounded p-1 text-muted-foreground hover:bg-accent hover:text-accent-foreground" title="刷新">
+        <i data-lucide="refresh-cw" class="h-4 w-4"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="flex flex-1 min-h-0 overflow-hidden">
+    <main id="content-area" data-region="content" data-slot="content-view" class="flex min-w-[var(--content-min)] flex-1 flex-col overflow-auto bg-background p-4">
+      <div class="icon-grid">
+        <div class="flex flex-col items-center gap-1 rounded-md p-2 text-center hover:bg-accent">
+          <i data-lucide="folder" class="h-10 w-10 text-primary"></i>
+          <span class="max-w-full truncate text-caption text-foreground">src</span>
+        </div>
+        <div class="flex flex-col items-center gap-1 rounded-md p-2 text-center hover:bg-accent">
+          <i data-lucide="file-code" class="h-10 w-10 text-muted-foreground"></i>
+          <span class="max-w-full truncate text-caption text-foreground">config.toml</span>
+        </div>
+        <div class="flex flex-col items-center gap-1 rounded-md p-2 text-center hover:bg-accent">
+          <i data-lucide="file-text" class="h-10 w-10 text-muted-foreground"></i>
+          <span class="max-w-full truncate text-caption text-foreground">README.md</span>
+        </div>
+        <div class="flex flex-col items-center gap-1 rounded-md p-2 text-center hover:bg-accent">
+          <i data-lucide="folder" class="h-10 w-10 text-primary"></i>
+          <span class="max-w-full truncate text-caption text-foreground">assets</span>
+        </div>
+        <div class="flex flex-col items-center gap-1 rounded-md p-2 text-center hover:bg-accent">
+          <i data-lucide="file-json" class="h-10 w-10 text-muted-foreground"></i>
+          <span class="max-w-full truncate text-caption text-foreground">package.json</span>
+        </div>
+        <div class="flex flex-col items-center gap-1 rounded-md p-2 text-center hover:bg-accent">
+          <i data-lucide="file" class="h-10 w-10 text-muted-foreground"></i>
+          <span class="max-w-full truncate text-caption text-foreground">LICENSE</span>
+        </div>
+      </div>
+    </main>
+
+    <aside id="inspector-panel" data-region="inspector" class="flex w-[var(--inspector-width)] shrink-0 flex-col border-l border-border bg-sidebar/60 shadow-panel backdrop-blur-md">
+      <div class="flex h-8 shrink-0 items-center border-b border-border px-3">
+        <span class="text-caption font-medium text-muted-foreground">预览与信息</span>
+      </div>
+      <div data-slot="inspector-content" class="flex-1 overflow-y-auto p-4">
+        <div data-dom-id="inspector-empty-state" class="flex h-full flex-col items-center justify-center text-center text-muted-foreground">
+          <i data-lucide="mouse-pointer-2" class="mb-3 h-10 w-10 opacity-40"></i>
+          <p class="text-body font-medium text-foreground">选择文件以查看预览和信息</p>
+          <p class="mt-1 max-w-[10rem] text-caption opacity-70">在左侧内容区点击任意文件或文件夹</p>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <footer data-region="statusbar" class="flex h-[var(--statusbar-height)] shrink-0 items-center justify-between border-t border-border bg-toolbar px-3 text-caption text-muted-foreground">
+    <div data-slot="statusbar-info" class="flex items-center gap-3 truncate">
+      <span>6 个项目</span>
+      <span>128 MB</span>
+    </div>
+    <div class="flex items-center gap-3">
+      <button data-dom-id="btn-zoom-out" class="hover:text-foreground"><i data-lucide="zoom-out" class="h-3 w-3"></i></button>
+      <span data-slot="zoom-level" class="tabular-nums">100%</span>
+      <button data-dom-id="btn-zoom-in" class="hover:text-foreground"><i data-lucide="zoom-in" class="h-3 w-3"></i></button>
+    </div>
+  </footer>
+</div>
+<!-- END browser-shell.html -->
+  </div>
+</div>
+<!-- END project-shell.html -->
+
+<script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设置 · 关于</title>
+    <style id="theme-vars">
+:root {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "SF Mono", SFMono-Regular, ui-monospace, Menlo, Monaco, "Courier New", monospace;
+  --traffic-red: #ff5f56;
+  --traffic-yellow: #ffbd2e;
+  --traffic-green: #27c93f;
+  --sidebar-width: 13rem;
+  --toolbar-height: 2.75rem;
+  --inspector-width: 16rem;
+  --content-min: 16rem;
+  --statusbar-height: 1.5rem;
+  --background: #ffffff;
+  --foreground: #1d1d1f;
+  --card: #ffffff;
+  --card-foreground: #1d1d1f;
+  --popover: #ffffff;
+  --popover-foreground: #1d1d1f;
+  --primary: #007aff;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f5f7;
+  --secondary-foreground: #1d1d1f;
+  --muted: #f5f5f7;
+  --muted-foreground: #6e6e73;
+  --accent: #e8e8ed;
+  --accent-foreground: #1d1d1f;
+  --destructive: #ff3b30;
+  --destructive-foreground: #ffffff;
+  --border: #d2d2d7;
+  --input: #d2d2d7;
+  --ring: #007aff;
+  --sidebar: #f5f5f7;
+  --sidebar-foreground: #1d1d1f;
+  --sidebar-primary: #007aff;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e8e8ed;
+  --sidebar-accent-foreground: #1d1d1f;
+  --toolbar: #f5f5f7;
+  --panel: rgba(255, 255, 255, 0.85);
+  --shadow-panel: 0 0 1.25rem rgba(0, 0, 0, 0.05);
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --text-caption: 0.6875rem;
+  --text-body: 0.8125rem;
+  --text-mono-sm: 0.6875rem;
+  --chart-1: #007aff;
+  --chart-2: #34c759;
+  --chart-3: #ff9500;
+  --chart-4: #af52de;
+  --chart-5: #ff3b30;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+    --radius-sm: var(--radius-sm);
+    --radius-md: var(--radius-md);
+    --radius-lg: var(--radius-lg);
+    --radius-xl: var(--radius-xl);
+  }
+  @layer base {
+    body { background: var(--background); color: var(--foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--background); }
+      .text-background { color: var(--background); }
+      .border-background { border-color: var(--background); }
+      .ring-background { --tw-ring-color: var(--background); }
+      .bg-foreground { background-color: var(--foreground); }
+      .text-foreground { color: var(--foreground); }
+      .border-foreground { border-color: var(--foreground); }
+      .ring-foreground { --tw-ring-color: var(--foreground); }
+      .bg-card { background-color: var(--card); }
+      .text-card { color: var(--card); }
+      .border-card { border-color: var(--card); }
+      .ring-card { --tw-ring-color: var(--card); }
+      .bg-card-foreground { background-color: var(--card-foreground); }
+      .text-card-foreground { color: var(--card-foreground); }
+      .border-card-foreground { border-color: var(--card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--card-foreground); }
+      .bg-popover { background-color: var(--popover); }
+      .text-popover { color: var(--popover); }
+      .border-popover { border-color: var(--popover); }
+      .ring-popover { --tw-ring-color: var(--popover); }
+      .bg-popover-foreground { background-color: var(--popover-foreground); }
+      .text-popover-foreground { color: var(--popover-foreground); }
+      .border-popover-foreground { border-color: var(--popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--popover-foreground); }
+      .bg-primary { background-color: var(--primary); }
+      .text-primary { color: var(--primary); }
+      .border-primary { border-color: var(--primary); }
+      .ring-primary { --tw-ring-color: var(--primary); }
+      .bg-primary-foreground { background-color: var(--primary-foreground); }
+      .text-primary-foreground { color: var(--primary-foreground); }
+      .border-primary-foreground { border-color: var(--primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--primary-foreground); }
+      .bg-secondary { background-color: var(--secondary); }
+      .text-secondary { color: var(--secondary); }
+      .border-secondary { border-color: var(--secondary); }
+      .ring-secondary { --tw-ring-color: var(--secondary); }
+      .bg-secondary-foreground { background-color: var(--secondary-foreground); }
+      .text-secondary-foreground { color: var(--secondary-foreground); }
+      .border-secondary-foreground { border-color: var(--secondary-foreground); }
+      .ring-secondary-foreground { --tw-ring-color: var(--secondary-foreground); }
+      .bg-muted { background-color: var(--muted); }
+      .text-muted { color: var(--muted); }
+      .border-muted { border-color: var(--muted); }
+      .ring-muted { --tw-ring-color: var(--muted); }
+      .bg-muted-foreground { background-color: var(--muted-foreground); }
+      .text-muted-foreground { color: var(--muted-foreground); }
+      .border-muted-foreground { border-color: var(--muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--muted-foreground); }
+      .bg-accent { background-color: var(--accent); }
+      .text-accent { color: var(--accent); }
+      .border-accent { border-color: var(--accent); }
+      .ring-accent { --tw-ring-color: var(--accent); }
+      .bg-accent-foreground { background-color: var(--accent-foreground); }
+      .text-accent-foreground { color: var(--accent-foreground); }
+      .border-accent-foreground { border-color: var(--accent-foreground); }
+      .ring-accent-foreground { --tw-ring-color: var(--accent-foreground); }
+      .bg-destructive { background-color: var(--destructive); }
+      .text-destructive { color: var(--destructive); }
+      .border-destructive { border-color: var(--destructive); }
+      .ring-destructive { --tw-ring-color: var(--destructive); }
+      .bg-destructive-foreground { background-color: var(--destructive-foreground); }
+      .text-destructive-foreground { color: var(--destructive-foreground); }
+      .border-destructive-foreground { border-color: var(--destructive-foreground); }
+      .ring-destructive-foreground { --tw-ring-color: var(--destructive-foreground); }
+      .bg-border { background-color: var(--border); }
+      .text-border { color: var(--border); }
+      .border-border { border-color: var(--border); }
+      .ring-border { --tw-ring-color: var(--border); }
+      .bg-input { background-color: var(--input); }
+      .text-input { color: var(--input); }
+      .border-input { border-color: var(--input); }
+      .ring-input { --tw-ring-color: var(--input); }
+      .bg-ring { background-color: var(--ring); }
+      .text-ring { color: var(--ring); }
+      .border-ring { border-color: var(--ring); }
+      .ring-ring { --tw-ring-color: var(--ring); }
+      .bg-sidebar { background-color: var(--sidebar); }
+      .text-sidebar { color: var(--sidebar); }
+      .border-sidebar { border-color: var(--sidebar); }
+      .ring-sidebar { --tw-ring-color: var(--sidebar); }
+      .bg-sidebar-foreground { background-color: var(--sidebar-foreground); }
+      .text-sidebar-foreground { color: var(--sidebar-foreground); }
+      .border-sidebar-foreground { border-color: var(--sidebar-foreground); }
+      .ring-sidebar-foreground { --tw-ring-color: var(--sidebar-foreground); }
+      .bg-sidebar-primary { background-color: var(--sidebar-primary); }
+      .text-sidebar-primary { color: var(--sidebar-primary); }
+      .border-sidebar-primary { border-color: var(--sidebar-primary); }
+      .ring-sidebar-primary { --tw-ring-color: var(--sidebar-primary); }
+      .bg-sidebar-primary-foreground { background-color: var(--sidebar-primary-foreground); }
+      .text-sidebar-primary-foreground { color: var(--sidebar-primary-foreground); }
+      .border-sidebar-primary-foreground { border-color: var(--sidebar-primary-foreground); }
+      .ring-sidebar-primary-foreground { --tw-ring-color: var(--sidebar-primary-foreground); }
+      .bg-sidebar-accent { background-color: var(--sidebar-accent); }
+      .text-sidebar-accent { color: var(--sidebar-accent); }
+      .border-sidebar-accent { border-color: var(--sidebar-accent); }
+      .ring-sidebar-accent { --tw-ring-color: var(--sidebar-accent); }
+      .bg-sidebar-accent-foreground { background-color: var(--sidebar-accent-foreground); }
+      .text-sidebar-accent-foreground { color: var(--sidebar-accent-foreground); }
+      .border-sidebar-accent-foreground { border-color: var(--sidebar-accent-foreground); }
+      .ring-sidebar-accent-foreground { --tw-ring-color: var(--sidebar-accent-foreground); }
+      .bg-chart-1 { background-color: var(--chart-1); }
+      .text-chart-1 { color: var(--chart-1); }
+      .border-chart-1 { border-color: var(--chart-1); }
+      .ring-chart-1 { --tw-ring-color: var(--chart-1); }
+      .bg-chart-2 { background-color: var(--chart-2); }
+      .text-chart-2 { color: var(--chart-2); }
+      .border-chart-2 { border-color: var(--chart-2); }
+      .ring-chart-2 { --tw-ring-color: var(--chart-2); }
+      .bg-chart-3 { background-color: var(--chart-3); }
+      .text-chart-3 { color: var(--chart-3); }
+      .border-chart-3 { border-color: var(--chart-3); }
+      .ring-chart-3 { --tw-ring-color: var(--chart-3); }
+      .bg-chart-4 { background-color: var(--chart-4); }
+      .text-chart-4 { color: var(--chart-4); }
+      .border-chart-4 { border-color: var(--chart-4); }
+      .ring-chart-4 { --tw-ring-color: var(--chart-4); }
+      .bg-chart-5 { background-color: var(--chart-5); }
+      .text-chart-5 { color: var(--chart-5); }
+      .border-chart-5 { border-color: var(--chart-5); }
+      .ring-chart-5 { --tw-ring-color: var(--chart-5); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+    <div id="app-window" class="relative flex flex-col w-full min-h-screen overflow-hidden rounded-xl shadow-[0_1.5rem_3.75rem_rgba(0,0,0,0.25)] bg-background text-foreground" style="font-family: var(--font-sans);">
+      <!-- Title bar / drag region -->
+      <div data-region="titlebar" class="app-region-drag flex h-11 shrink-0 items-center justify-between border-b border-border bg-sidebar/80 px-4 backdrop-blur-md">
+        <div class="flex items-center gap-2">
+          <span class="inline-block h-3 w-3 rounded-full" style="background-color: var(--traffic-red);"></span>
+          <span class="inline-block h-3 w-3 rounded-full" style="background-color: var(--traffic-yellow);"></span>
+          <span class="inline-block h-3 w-3 rounded-full" style="background-color: var(--traffic-green);"></span>
+        </div>
+        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-caption text-muted-foreground" data-slot="window-title">IDE 工作目录浏览器</div>
+        <div class="w-16"></div>
+      </div>
+
+      <!-- App body: settings shell -->
+      <div id="app-body" class="flex flex-1 overflow-hidden">
+        <!-- Settings sidebar -->
+        <aside id="settings-sidebar" data-region="settings-sidebar" class="flex w-[var(--sidebar-width)] shrink-0 flex-col border-r border-border bg-sidebar/80 backdrop-blur-md">
+          <div class="flex h-11 shrink-0 items-center border-b border-border px-4">
+            <span class="text-heading">设置</span>
+          </div>
+          <nav class="flex-1 overflow-y-auto px-3 py-2" aria-label="设置分类">
+            <ul class="space-y-0.5">
+              <li>
+                <button data-dom-id="settings-tab-ide" data-tab="ide" data-slot="settings-tab" class="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-body text-foreground hover:bg-accent hover:text-accent-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground">
+                  <i data-lucide="box" class="h-4 w-4 shrink-0"></i>
+                  <span>IDE 管理</span>
+                </button>
+              </li>
+              <li>
+                <button data-dom-id="settings-tab-appearance" data-tab="appearance" data-slot="settings-tab" class="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-body text-foreground hover:bg-accent hover:text-accent-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground">
+                  <i data-lucide="palette" class="h-4 w-4 shrink-0"></i>
+                  <span>外观</span>
+                </button>
+              </li>
+              <li>
+                <button data-dom-id="settings-tab-advanced" data-tab="advanced" data-slot="settings-tab" class="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-body text-foreground hover:bg-accent hover:text-accent-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground">
+                  <i data-lucide="sliders-horizontal" class="h-4 w-4 shrink-0"></i>
+                  <span>高级</span>
+                </button>
+              </li>
+              <li>
+                <button data-dom-id="settings-tab-about" data-tab="about" data-slot="settings-tab" data-active="true" class="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-body text-foreground hover:bg-accent hover:text-accent-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground">
+                  <i data-lucide="info" class="h-4 w-4 shrink-0"></i>
+                  <span>关于</span>
+                </button>
+              </li>
+            </ul>
+          </nav>
+          <div class="border-t border-border p-3">
+            <button data-dom-id="btn-back-to-browser" class="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-body text-muted-foreground hover:bg-accent hover:text-accent-foreground">
+              <i data-lucide="arrow-left" class="h-4 w-4 shrink-0"></i>
+              <span>返回浏览器</span>
+            </button>
+          </div>
+        </aside>
+
+        <!-- Settings form area -->
+        <div class="flex min-w-0 flex-1 flex-col bg-background">
+          <div class="flex h-11 shrink-0 items-center border-b border-border bg-toolbar px-4">
+            <span data-slot="settings-tab" class="text-heading">关于</span>
+          </div>
+          <main data-region="settings-form" data-slot="settings-form" class="flex-1 overflow-y-auto p-6">
+            <section class="mx-auto max-w-2xl space-y-6">
+              <!-- App identity -->
+              <div class="flex items-center gap-4 rounded-lg border border-border bg-card p-5">
+                <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-secondary">
+                  <i data-lucide="folder-open" class="h-8 w-8 text-primary"></i>
+                </div>
+                <div>
+                  <h2 class="text-heading font-semibold text-foreground">IDE 工作目录浏览器</h2>
+                  <p class="text-body text-muted-foreground">版本 1.0.0 (Build 1000)</p>
+                  <p class="mt-1 text-caption text-muted-foreground">© 2026 IDE Workdir Browser Team. 保留所有权利。</p>
+                </div>
+              </div>
+
+              <!-- Actions -->
+              <div class="flex flex-wrap items-center gap-2">
+                <button type="button" class="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-body font-medium text-primary-foreground hover:bg-primary/90">
+                  <i data-lucide="download" class="h-4 w-4"></i>
+                  <span>检查更新</span>
+                </button>
+                <a href="#" class="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-3 py-1.5 text-body text-foreground hover:bg-secondary">
+                  <i data-lucide="file-text" class="h-4 w-4"></i>
+                  <span>开源许可证</span>
+                </a>
+              </div>
+
+              <!-- Shortcuts -->
+              <div class="rounded-lg border border-border bg-card p-4">
+                <h3 class="mb-3 text-body font-semibold text-foreground">键盘快捷键</h3>
+                <dl class="space-y-2">
+                  <div class="flex items-center justify-between">
+                    <dt class="text-body text-foreground">聚焦搜索</dt>
+                    <dd class="flex items-center gap-1"><kbd class="rounded border border-border bg-secondary px-1.5 py-0.5 text-caption font-mono text-foreground">⌘</kbd><kbd class="rounded border border-border bg-secondary px-1.5 py-0.5 text-caption font-mono text-foreground">K</kbd></dd>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <dt class="text-body text-foreground">切换视图模式</dt>
+                    <dd class="flex items-center gap-1"><kbd class="rounded border border-border bg-secondary px-1.5 py-0.5 text-caption font-mono text-foreground">⌘</kbd><kbd class="rounded border border-border bg-secondary px-1.5 py-0.5 text-caption font-mono text-foreground">1</kbd><kbd class="rounded border border-border bg-secondary px-1.5 py-0.5 text-caption font-mono text-foreground">2</kbd><kbd class="rounded border border-border bg-secondary px-1.5 py-0.5 text-caption font-mono text-foreground">3</kbd></dd>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <dt class="text-body text-foreground">刷新目录</dt>
+                    <dd class="flex items-center gap-1"><kbd class="rounded border border-border bg-secondary px-1.5 py-0.5 text-caption font-mono text-foreground">⌘</kbd><kbd class="rounded border border-border bg-secondary px-1.5 py-0.5 text-caption font-mono text-foreground">R</kbd></dd>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <dt class="text-body text-foreground">显示/隐藏隐藏文件</dt>
+                    <dd class="flex items-center gap-1"><kbd class="rounded border border-border bg-secondary px-1.5 py-0.5 text-caption font-mono text-foreground">⇧</kbd><kbd class="rounded border border-border bg-secondary px-1.5 py-0.5 text-caption font-mono text-foreground">⌘</kbd><kbd class="rounded border border-border bg-secondary px-1.5 py-0.5 text-caption font-mono text-foreground">.</kbd></dd>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <dt class="text-body text-foreground">打开设置</dt>
+                    <dd class="flex items-center gap-1"><kbd class="rounded border border-border bg-secondary px-1.5 py-0.5 text-caption font-mono text-foreground">⌘</kbd><kbd class="rounded border border-border bg-secondary px-1.5 py-0.5 text-caption font-mono text-foreground">,</kbd></dd>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <dt class="text-body text-foreground">打开/关闭检查器</dt>
+                    <dd class="flex items-center gap-1"><kbd class="rounded border border-border bg-secondary px-1.5 py-0.5 text-caption font-mono text-foreground">⌘</kbd><kbd class="rounded border border-border bg-secondary px-1.5 py-0.5 text-caption font-mono text-foreground">I</kbd></dd>
+                  </div>
+                </dl>
+              </div>
+
+              <!-- Credits -->
+              <p class="text-center text-caption text-muted-foreground">基于 Electron 与 Tailwind CSS 构建。</p>
+            </section>
+          </main>
+        </div>
+      </div>
+    </div>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

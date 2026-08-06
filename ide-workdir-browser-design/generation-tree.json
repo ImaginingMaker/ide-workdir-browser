@@ -1,0 +1,1008 @@
+{
+  "root": {
+    "nodeId": "gen-project-shell",
+    "kind": "project-shell",
+    "pageIds": [],
+    "output": "partials/project-shell.html",
+    "sharedRegions": [
+      "macOS window frame",
+      "traffic lights",
+      "drag region",
+      "base layout grid (sidebar + main + inspector + statusbar)"
+    ],
+    "privateRegions": [],
+    "mutableSlots": [],
+    "status": "generated",
+    "children": [
+      {
+        "nodeId": "gen-browser-shell",
+        "kind": "shared-branch",
+        "pageIds": [],
+        "output": "partials/browser-shell.html",
+        "sharedRegions": [
+          "sidebar with IDE list",
+          "toolbar (nav/view-switch/breadcrumb/search/stats/refresh)",
+          "content area frame",
+          "inspector panel frame",
+          "statusbar"
+        ],
+        "privateRegions": [],
+        "mutableSlots": [
+          "SLOT:content-view",
+          "SLOT:inspector-content",
+          "SLOT:breadcrumb-path",
+          "SLOT:statusbar-info",
+          "SLOT:active-ide",
+          "SLOT:zoom-level",
+          "SLOT:theme",
+          "SLOT:sidebar-state"
+        ],
+        "status": "generated",
+        "children": [
+          {
+            "nodeId": "gen-page-icon-view",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-icon-view"
+            ],
+            "output": "pages/icon-view.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "icon grid content"
+            ],
+            "mutableSlots": [
+              "SLOT:content-view"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-list-view",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-list-view"
+            ],
+            "output": "pages/list-view.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "list table content"
+            ],
+            "mutableSlots": [
+              "SLOT:content-view"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-column-view",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-column-view"
+            ],
+            "output": "pages/column-view.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "column cascade content"
+            ],
+            "mutableSlots": [
+              "SLOT:content-view"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-preview-config",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-preview-config"
+            ],
+            "output": "pages/preview-config.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "inspector preview: syntax-highlighted config.toml"
+            ],
+            "mutableSlots": [
+              "SLOT:inspector-content"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-preview-markdown",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-preview-markdown"
+            ],
+            "output": "pages/preview-markdown.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "inspector: rendered markdown + source toggle"
+            ],
+            "mutableSlots": [
+              "SLOT:inspector-content"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-preview-image",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-preview-image"
+            ],
+            "output": "pages/preview-image.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "inspector: image thumbnail + dimensions"
+            ],
+            "mutableSlots": [
+              "SLOT:inspector-content"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-folder-stats",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-folder-stats"
+            ],
+            "output": "pages/folder-stats.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "inspector: folder statistics + type distribution chart"
+            ],
+            "mutableSlots": [
+              "SLOT:inspector-content"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-info-tab",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-info-tab"
+            ],
+            "output": "pages/info-tab.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "inspector: metadata card + action buttons"
+            ],
+            "mutableSlots": [
+              "SLOT:inspector-content"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-search-results",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-search-results"
+            ],
+            "output": "pages/search-results.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "search dropdown overlay"
+            ],
+            "mutableSlots": [],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-context-menu",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-context-menu"
+            ],
+            "output": "pages/context-menu.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "right-click context menu overlay"
+            ],
+            "mutableSlots": [],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-multi-select",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-multi-select"
+            ],
+            "output": "pages/multi-select.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "multi-select state + marquee"
+            ],
+            "mutableSlots": [
+              "SLOT:content-view"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-zoom-75-icon",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-zoom-75-icon"
+            ],
+            "output": "pages/zoom-75-icon.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "zoom 75% variant"
+            ],
+            "mutableSlots": [
+              "SLOT:zoom-level",
+              "SLOT:content-view"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-zoom-125-icon",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-zoom-125-icon"
+            ],
+            "output": "pages/zoom-125-icon.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "zoom 125% variant"
+            ],
+            "mutableSlots": [
+              "SLOT:zoom-level",
+              "SLOT:content-view"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-zoom-150-icon",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-zoom-150-icon"
+            ],
+            "output": "pages/zoom-150-icon.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "zoom 150% variant"
+            ],
+            "mutableSlots": [
+              "SLOT:zoom-level",
+              "SLOT:content-view"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-zoom-125-list",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-zoom-125-list"
+            ],
+            "output": "pages/zoom-125-list.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "zoom 125% list variant"
+            ],
+            "mutableSlots": [
+              "SLOT:zoom-level",
+              "SLOT:content-view"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-zoom-125-column",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-zoom-125-column"
+            ],
+            "output": "pages/zoom-125-column.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "zoom 125% column variant"
+            ],
+            "mutableSlots": [
+              "SLOT:zoom-level",
+              "SLOT:content-view"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-empty-dir",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-empty-dir"
+            ],
+            "output": "pages/empty-dir.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "empty directory state"
+            ],
+            "mutableSlots": [
+              "SLOT:content-view"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-ide-not-installed",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-ide-not-installed"
+            ],
+            "output": "pages/ide-not-installed.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "IDE not installed empty state"
+            ],
+            "mutableSlots": [
+              "SLOT:content-view",
+              "SLOT:active-ide"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-permission-error",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-permission-error"
+            ],
+            "output": "pages/permission-error.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "permission denied error card"
+            ],
+            "mutableSlots": [
+              "SLOT:content-view"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-partial-permission",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-partial-permission"
+            ],
+            "output": "pages/partial-permission.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "partial permission: locked entries"
+            ],
+            "mutableSlots": [
+              "SLOT:content-view"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-long-filename",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-long-filename"
+            ],
+            "output": "pages/long-filename.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "long filename truncation"
+            ],
+            "mutableSlots": [
+              "SLOT:content-view"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-breadcrumb-overflow",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-breadcrumb-overflow"
+            ],
+            "output": "pages/breadcrumb-overflow.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "breadcrumb overflow dropdown"
+            ],
+            "mutableSlots": [],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-large-dir-pagination",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-large-dir-pagination"
+            ],
+            "output": "pages/large-dir-pagination.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "large directory pagination"
+            ],
+            "mutableSlots": [
+              "SLOT:content-view",
+              "SLOT:statusbar-info"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-binary-preview",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-binary-preview"
+            ],
+            "output": "pages/binary-preview.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "binary file metadata card"
+            ],
+            "mutableSlots": [
+              "SLOT:inspector-content"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-large-text-truncate",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-large-text-truncate"
+            ],
+            "output": "pages/large-text-truncate.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "large text truncation notice"
+            ],
+            "mutableSlots": [
+              "SLOT:inspector-content"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-empty-file",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-empty-file"
+            ],
+            "output": "pages/empty-file.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "empty file state"
+            ],
+            "mutableSlots": [
+              "SLOT:inspector-content"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-unknown-ext",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-unknown-ext"
+            ],
+            "output": "pages/unknown-ext.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "unknown extension fallback"
+            ],
+            "mutableSlots": [
+              "SLOT:inspector-content"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-non-utf8",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-non-utf8"
+            ],
+            "output": "pages/non-utf8.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "non-UTF-8 encoding warning"
+            ],
+            "mutableSlots": [
+              "SLOT:inspector-content"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-symlink",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-symlink"
+            ],
+            "output": "pages/symlink.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "symlink + broken symlink states"
+            ],
+            "mutableSlots": [
+              "SLOT:content-view"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-search-no-result",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-search-no-result"
+            ],
+            "output": "pages/search-no-result.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "search no results state"
+            ],
+            "mutableSlots": [],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-search-too-many",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-search-too-many"
+            ],
+            "output": "pages/search-too-many.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "search too many results"
+            ],
+            "mutableSlots": [],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-loading-state",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-loading-state"
+            ],
+            "output": "pages/loading-state.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "loading skeleton screens"
+            ],
+            "mutableSlots": [
+              "SLOT:content-view",
+              "SLOT:inspector-content"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-hidden-files",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-hidden-files"
+            ],
+            "output": "pages/hidden-files.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "hidden files toggle state"
+            ],
+            "mutableSlots": [
+              "SLOT:content-view"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-content-stale",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-content-stale"
+            ],
+            "output": "pages/content-stale.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "content stale indicator"
+            ],
+            "mutableSlots": [
+              "SLOT:statusbar-info"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-toolbar-overflow",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-toolbar-overflow"
+            ],
+            "output": "pages/toolbar-overflow.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "toolbar overflow narrow state"
+            ],
+            "mutableSlots": [],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-statusbar-overflow",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-statusbar-overflow"
+            ],
+            "output": "pages/statusbar-overflow.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "statusbar overflow truncation"
+            ],
+            "mutableSlots": [
+              "SLOT:statusbar-info"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-dark-icon-view",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-dark-icon-view"
+            ],
+            "output": "pages/dark-icon-view.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "dark theme icon view"
+            ],
+            "mutableSlots": [
+              "SLOT:theme",
+              "SLOT:content-view"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-narrow-window",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-narrow-window"
+            ],
+            "output": "pages/narrow-window.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "narrow window 720px collapsed state"
+            ],
+            "mutableSlots": [
+              "SLOT:sidebar-state",
+              "SLOT:content-view"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-wide-window",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-wide-window"
+            ],
+            "output": "pages/wide-window.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "wide window 1600px expanded state"
+            ],
+            "mutableSlots": [
+              "SLOT:content-view"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-sidebar-hidden",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-sidebar-hidden"
+            ],
+            "output": "pages/sidebar-hidden.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "sidebar hidden state"
+            ],
+            "mutableSlots": [
+              "SLOT:sidebar-state",
+              "SLOT:content-view"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-first-run",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-first-run"
+            ],
+            "output": "pages/first-run.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "first run empty state + welcome"
+            ],
+            "mutableSlots": [
+              "SLOT:content-view",
+              "SLOT:active-ide"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-inspector-empty",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-inspector-empty"
+            ],
+            "output": "pages/inspector-empty.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "inspector empty state"
+            ],
+            "mutableSlots": [
+              "SLOT:inspector-content"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-window-inactive",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-window-inactive"
+            ],
+            "output": "pages/window-inactive.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "window inactive desaturated state"
+            ],
+            "mutableSlots": [],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-multi-select-stats",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-multi-select-stats"
+            ],
+            "output": "pages/multi-select-stats.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "multi-select statistics aggregation"
+            ],
+            "mutableSlots": [
+              "SLOT:inspector-content",
+              "SLOT:content-view"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-read-timeout",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-read-timeout"
+            ],
+            "output": "pages/read-timeout.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "read timeout error card"
+            ],
+            "mutableSlots": [
+              "SLOT:content-view"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-disk-unmounted",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-disk-unmounted"
+            ],
+            "output": "pages/disk-unmounted.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "disk unmounted error + sidebar path missing"
+            ],
+            "mutableSlots": [
+              "SLOT:content-view",
+              "SLOT:active-ide"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-file-locked",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-file-locked"
+            ],
+            "output": "pages/file-locked.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "file locked / concurrent write state"
+            ],
+            "mutableSlots": [
+              "SLOT:inspector-content"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-column-deep-scroll",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-column-deep-scroll"
+            ],
+            "output": "pages/column-deep-scroll.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "column view deep horizontal scroll"
+            ],
+            "mutableSlots": [
+              "SLOT:content-view"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-narrow-panel-constraint",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-narrow-panel-constraint"
+            ],
+            "output": "pages/narrow-panel-constraint.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "narrow window panel width constraint"
+            ],
+            "mutableSlots": [
+              "SLOT:sidebar-state",
+              "SLOT:content-view"
+            ],
+            "status": "generated",
+            "children": []
+          }
+        ]
+      },
+      {
+        "nodeId": "gen-settings-shell",
+        "kind": "shared-branch",
+        "pageIds": [],
+        "output": "partials/settings-shell.html",
+        "sharedRegions": [
+          "settings left tab sidebar",
+          "settings right form area",
+          "window chrome"
+        ],
+        "privateRegions": [],
+        "mutableSlots": [
+          "SLOT:settings-tab",
+          "SLOT:settings-form"
+        ],
+        "status": "generated",
+        "children": [
+          {
+            "nodeId": "gen-page-settings-ide",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-settings-ide"
+            ],
+            "output": "pages/settings-ide.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "IDE management form"
+            ],
+            "mutableSlots": [
+              "SLOT:settings-tab",
+              "SLOT:settings-form"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-settings-appearance",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-settings-appearance"
+            ],
+            "output": "pages/settings-appearance.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "appearance form"
+            ],
+            "mutableSlots": [
+              "SLOT:settings-tab",
+              "SLOT:settings-form"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-settings-advanced",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-settings-advanced"
+            ],
+            "output": "pages/settings-advanced.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "advanced form"
+            ],
+            "mutableSlots": [
+              "SLOT:settings-tab",
+              "SLOT:settings-form"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-settings-about",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-settings-about"
+            ],
+            "output": "pages/settings-about.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "about page + shortcuts"
+            ],
+            "mutableSlots": [
+              "SLOT:settings-tab",
+              "SLOT:settings-form"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-dark-settings",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-dark-settings"
+            ],
+            "output": "pages/dark-settings.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "dark settings page"
+            ],
+            "mutableSlots": [
+              "SLOT:theme",
+              "SLOT:settings-tab",
+              "SLOT:settings-form"
+            ],
+            "status": "generated",
+            "children": []
+          },
+          {
+            "nodeId": "gen-page-dark-inspector",
+            "kind": "page-leaf",
+            "pageIds": [
+              "page-dark-inspector"
+            ],
+            "output": "pages/dark-inspector.html",
+            "sharedRegions": [],
+            "privateRegions": [
+              "dark inspector code preview"
+            ],
+            "mutableSlots": [
+              "SLOT:theme",
+              "SLOT:inspector-content"
+            ],
+            "status": "generated",
+            "children": []
+          }
+        ]
+      }
+    ]
+  }
+}

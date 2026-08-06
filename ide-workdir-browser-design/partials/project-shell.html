@@ -1,0 +1,23 @@
+<!-- BEGIN project-shell.html -->
+<!-- Shared: macOS window frame, traffic lights, drag region, base layout grid -->
+<div id="app-window" class="relative flex flex-col w-full min-h-screen overflow-hidden rounded-xl shadow-[0_1.5rem_3.75rem_rgba(0,0,0,0.25)] bg-background text-foreground" style="font-family: var(--font-sans);">
+  <!-- Title bar / drag region -->
+  <div data-region="titlebar" class="app-region-drag flex h-11 shrink-0 items-center justify-between border-b border-border bg-sidebar/80 px-4 backdrop-blur-md">
+    <!-- Traffic lights -->
+    <div class="flex items-center gap-2">
+      <span class="inline-block h-3 w-3 rounded-full" style="background-color: var(--traffic-red);"></span>
+      <span class="inline-block h-3 w-3 rounded-full" style="background-color: var(--traffic-yellow);"></span>
+      <span class="inline-block h-3 w-3 rounded-full" style="background-color: var(--traffic-green);"></span>
+    </div>
+    <!-- Window title (centered, draggable) -->
+    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-caption text-muted-foreground" data-slot="window-title">IDE 工作目录浏览器</div>
+    <!-- Right spacer -->
+    <div class="w-16"></div>
+  </div>
+
+  <!-- App body: injected shell content (browser-shell or settings-shell) -->
+  <div id="app-body" class="flex flex-1 overflow-hidden">
+    <!-- SLOT:shell-content -->
+  </div>
+</div>
+<!-- END project-shell.html -->

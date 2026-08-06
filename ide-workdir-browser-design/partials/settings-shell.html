@@ -1,0 +1,56 @@
+<!-- BEGIN settings-shell.html -->
+<!-- Shared: settings left tab sidebar, settings right form area, window chrome -->
+<!-- Insert into project-shell SLOT:shell-content -->
+
+<!-- Settings sidebar -->
+<aside id="settings-sidebar" data-region="settings-sidebar" class="flex w-[var(--sidebar-width)] shrink-0 flex-col border-r border-border bg-sidebar/80 backdrop-blur-md">
+  <div class="flex h-11 shrink-0 items-center border-b border-border px-4">
+    <span class="text-heading">设置</span>
+  </div>
+  <nav class="flex-1 overflow-y-auto px-3 py-2" aria-label="设置分类">
+    <ul class="space-y-0.5">
+      <li>
+        <button data-dom-id="settings-tab-ide" data-tab="ide" data-slot="settings-tab" data-active="true" class="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-body text-foreground hover:bg-accent hover:text-accent-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground">
+          <i data-lucide="box" class="h-4 w-4 shrink-0"></i>
+          <span>IDE 管理</span>
+        </button>
+      </li>
+      <li>
+        <button data-dom-id="settings-tab-appearance" data-tab="appearance" data-slot="settings-tab" class="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-body text-foreground hover:bg-accent hover:text-accent-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground">
+          <i data-lucide="palette" class="h-4 w-4 shrink-0"></i>
+          <span>外观</span>
+        </button>
+      </li>
+      <li>
+        <button data-dom-id="settings-tab-advanced" data-tab="advanced" data-slot="settings-tab" class="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-body text-foreground hover:bg-accent hover:text-accent-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground">
+          <i data-lucide="sliders-horizontal" class="h-4 w-4 shrink-0"></i>
+          <span>高级</span>
+        </button>
+      </li>
+      <li>
+        <button data-dom-id="settings-tab-about" data-tab="about" data-slot="settings-tab" class="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-body text-foreground hover:bg-accent hover:text-accent-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground">
+          <i data-lucide="info" class="h-4 w-4 shrink-0"></i>
+          <span>关于</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+  <div class="border-t border-border p-3">
+    <button data-dom-id="btn-back-to-browser" class="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-body text-muted-foreground hover:bg-accent hover:text-accent-foreground">
+      <i data-lucide="arrow-left" class="h-4 w-4 shrink-0"></i>
+      <span>返回浏览器</span>
+    </button>
+  </div>
+</aside>
+
+<!-- Settings form area -->
+<div class="flex min-w-0 flex-1 flex-col bg-background">
+  <div class="flex h-11 shrink-0 items-center border-b border-border bg-toolbar px-4">
+    <span data-slot="settings-tab" class="text-heading">IDE 管理</span>
+  </div>
+  <main data-region="settings-form" data-slot="settings-form" class="flex-1 overflow-y-auto p-6">
+    <!-- SLOT:settings-form -->
+  </main>
+</div>
+
+<!-- END settings-shell.html -->

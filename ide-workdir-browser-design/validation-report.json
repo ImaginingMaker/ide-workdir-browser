@@ -1,0 +1,175 @@
+{
+  "success": true,
+  "outcome": "openpencil_design_regenerated",
+  "generatedAt": "2026-08-06",
+  "sourceStates": 43,
+  "consolidatedPages": 7,
+  "assetRendering": {
+    "agentAndAppIcons": "SVG source assets rasterized to PNG data URLs with macOS sips",
+    "pngImageNodeCount": 147,
+    "svgImageNodeCount": 0
+  },
+  "consistencyReview": {
+    "agentsMatchDefaultAgents": true,
+    "layoutTokensMatchSass": true,
+    "minimumWindowMatchesRuntime": true,
+    "fileIconTokensMatchSharedKinds": true,
+    "notificationLayerMatchesRuntime": true,
+    "overlayGeometryMatchesRuntime": true,
+    "contextMenuSeparatorsMatchRuntime": true,
+    "disabledTrashActionMatchesRuntime": true,
+    "activeAgentStatusUsesOnPrimaryColor": true,
+    "unavailableAgentRowsDoNotDim": true,
+    "settingsAgentStatusUsesPlainText": true,
+    "settingsAgentEnabledIndependentOfStatus": true,
+    "sourceStatesMissing": [],
+    "staleTextCounts": {
+      "自定义新增": 0,
+      "Visual Studio Code": 0,
+      "~/.vscode": 0,
+      "52px": 0,
+      "当前为 Claude Code 工作区": 0,
+      "剪贴板中有 1 项来自 Codex": 0,
+      "粘贴到这里": 0
+    }
+  },
+  "commands": [
+    {
+      "command": "node --check scripts/generate.mjs",
+      "status": "passed"
+    },
+    {
+      "command": "node --check scripts/consolidate.mjs",
+      "status": "passed"
+    },
+    {
+      "command": "python3 -m json.tool tokens.json",
+      "status": "passed"
+    },
+    {
+      "command": "node scripts/generate.mjs",
+      "status": "passed",
+      "result": {
+        "pages": 43,
+        "file": "ide-workdir-browser.op"
+      }
+    },
+    {
+      "command": "node scripts/consolidate.mjs",
+      "status": "passed",
+      "result": {
+        "pages": 7,
+        "names": [
+          "01 设计系统",
+          "02 核心浏览体验",
+          "03 文件预览",
+          "04 搜索与文件操作",
+          "05 设置",
+          "06 边缘与系统状态",
+          "07 主题响应式与帮助"
+        ]
+      }
+    },
+    {
+      "command": "python3 -m json.tool ide-workdir-browser.op",
+      "status": "passed"
+    },
+    {
+      "command": "count image nodes whose src starts with data:image/png",
+      "status": "passed",
+      "result": 147
+    },
+    {
+      "command": "count image nodes whose src starts with data:image/svg",
+      "status": "passed",
+      "result": 0
+    },
+    {
+      "command": "compare DEFAULT_AGENTS with scripts/generate.mjs agents",
+      "status": "passed"
+    },
+    {
+      "command": "compare Sass layout dimensions with tokens.json",
+      "status": "passed"
+    },
+    {
+      "command": "compare BrowserWindow and Renderer minimum size with tokens.json",
+      "status": "passed",
+      "result": "900x540"
+    },
+    {
+      "command": "compare FileIconKind with tokens.json fileIcon keys",
+      "status": "passed"
+    },
+    {
+      "command": "verify notification-host/notification-stack/notification-toast structure in ide-workdir-browser.op",
+      "status": "passed"
+    },
+    {
+      "command": "verify Windsurf/Kiro agent-item nodes have no opacity override",
+      "status": "passed"
+    },
+    {
+      "command": "verify settings Agent cards use plain status text instead of status pill dots",
+      "status": "passed"
+    },
+    {
+      "command": "verify settings Agent enabled state is independent from path availability",
+      "status": "passed"
+    },
+    {
+      "command": "design:refine all 7 consolidated page roots",
+      "status": "passed",
+      "result": {
+        "autoFixes": 0
+      }
+    },
+    {
+      "command": "design:lint all 7 consolidated page roots",
+      "status": "passed_with_warnings",
+      "result": "heuristic warnings only; no structural errors"
+    },
+    {
+      "command": "verify OpenPencil computed layout for A13 drop overlay",
+      "status": "passed",
+      "result": {
+        "stage": "932x786",
+        "overlay": "932x786",
+        "position": "0,0"
+      }
+    },
+    {
+      "command": "verify OpenPencil computed layout for file operation modal",
+      "status": "passed",
+      "result": {
+        "layer": "932x786",
+        "card": "420x210",
+        "cardPosition": "256,288"
+      }
+    },
+    {
+      "command": "verify OpenPencil computed layout for F41 context menu",
+      "status": "passed",
+      "result": {
+        "menu": "224x250",
+        "position": "220,150",
+        "separatorCount": 2
+      }
+    },
+    {
+      "command": "verify OpenPencil computed layout for notification stack",
+      "status": "passed",
+      "result": {
+        "primary": "964x818",
+        "stack": "420x52",
+        "stackPosition": "526,748",
+        "safeInset": 18
+      }
+    }
+  ],
+  "scopeNotes": [
+    "The current authoritative design artifact is ide-workdir-browser.op.",
+    "Historical HTML pages under pages/ were not regenerated in this pass and are excluded from this report.",
+    "Runtime product validation remains covered by ide-workdir-browser-code/docs/computer-use-regression.md."
+  ]
+}

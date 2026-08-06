@@ -1,0 +1,45 @@
+{
+  "count": 7,
+  "sourceStateCount": 43,
+  "generatedFrom": {
+    "source": "scripts/generate.mjs",
+    "consolidation": "scripts/consolidate.mjs"
+  },
+  "groups": [
+    {
+      "name": "01 设计系统",
+      "page": 1,
+      "sourceStates": 2
+    },
+    {
+      "name": "02 核心浏览体验",
+      "page": 2,
+      "sourceStates": 10
+    },
+    {
+      "name": "03 文件预览",
+      "page": 3,
+      "sourceStates": 6
+    },
+    {
+      "name": "04 搜索与文件操作",
+      "page": 4,
+      "sourceStates": 9
+    },
+    {
+      "name": "05 设置",
+      "page": 5,
+      "sourceStates": 7
+    },
+    {
+      "name": "06 边缘与系统状态",
+      "page": 6,
+      "sourceStates": 4
+    },
+    {
+      "name": "07 主题响应式与帮助",
+      "page": 7,
+      "sourceStates": 5
+    }
+  ]
+}

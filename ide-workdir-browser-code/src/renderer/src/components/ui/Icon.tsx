@@ -1,0 +1,108 @@
+import {
+  ArrowLeft,
+  Binary,
+  BookOpenText,
+  Bolt,
+  Box,
+  Braces,
+  Check,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  CircleAlert,
+  Columns3,
+  Copy,
+  CopyPlus,
+  Database,
+  File,
+  FileArchive,
+  FileCode2,
+  FileCog,
+  FileJson2,
+  FileKey2,
+  FileTerminal,
+  FileText,
+  FileType2,
+  Folder,
+  FolderOpen,
+  Grid3X3,
+  HardDrive,
+  Image,
+  Info,
+  Keyboard,
+  List,
+  MessageSquare,
+  PanelLeft,
+  PanelRight,
+  Palette,
+  RefreshCw,
+  Search,
+  Settings,
+  SlidersHorizontal,
+  Sparkles,
+  Table2,
+  TriangleAlert,
+  X,
+  Zap
+} from 'lucide-react'
+
+const icons = {
+  'arrow-left': ArrowLeft,
+  archive: FileArchive,
+  binary: Binary,
+  bolt: Bolt,
+  markdown: BookOpenText,
+  box: Box,
+  braces: Braces,
+  check: Check,
+  'chevron-down': ChevronDown,
+  'chevron-left': ChevronLeft,
+  'chevron-right': ChevronRight,
+  'circle-alert': CircleAlert,
+  columns: Columns3,
+  copy: Copy,
+  'copy-plus': CopyPlus,
+  database: Database,
+  document: FileType2,
+  file: File,
+  code: FileCode2,
+  config: FileCog,
+  json: FileJson2,
+  key: FileKey2,
+  terminal: FileTerminal,
+  text: FileText,
+  folder: Folder,
+  'folder-open': FolderOpen,
+  grid: Grid3X3,
+  'hard-drive': HardDrive,
+  image: Image,
+  info: Info,
+  keyboard: Keyboard,
+  list: List,
+  'message-square': MessageSquare,
+  'panel-left': PanelLeft,
+  'panel-right': PanelRight,
+  palette: Palette,
+  refresh: RefreshCw,
+  search: Search,
+  settings: Settings,
+  sliders: SlidersHorizontal,
+  sparkles: Sparkles,
+  table: Table2,
+  'triangle-alert': TriangleAlert,
+  x: X,
+  zap: Zap
+} as const
+
+export type IconName = keyof typeof icons
+
+interface IconProps {
+  name: IconName | string
+  size?: number
+  strokeWidth?: number
+}
+
+export const Icon = ({ name, size = 16, strokeWidth = 1.8 }: IconProps): React.JSX.Element => {
+  const Component = icons[name as IconName] ?? File
+  return <Component aria-hidden="true" size={size} strokeWidth={strokeWidth} />
+}
