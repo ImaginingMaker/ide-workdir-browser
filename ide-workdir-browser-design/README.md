@@ -14,6 +14,8 @@ Electron macOS 工作目录浏览器的 OpenPencil 高保真设计稿。当前�
 - `scripts/generate.mjs`：从真实应用资产和当前 UI 结构生成 43 个源状态；运行时使用 macOS
   `sips` 将 SVG 图标栅格化为 PNG data URL，避免 OpenPencil image 节点显示占位图
 - `scripts/consolidate.mjs`：将 43 个源状态合并为 7 个分类画布
+- 根 README 的产品界面图从合并设计稿中的 A01、A05、B19 当前状态导出，维护位置和隐私要求见
+  [截图说明](../ide-workdir-browser-code/docs/screenshots/README.md)
 - 生成脚本、HTML 原型和 OpenPencil 文件中的路径必须使用 `~`、`<workspace>`、`<tool-cache>`
   等脱敏形式，不写入本机用户名或真实绝对路径
 

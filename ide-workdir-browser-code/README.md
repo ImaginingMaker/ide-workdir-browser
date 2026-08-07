@@ -64,9 +64,16 @@ README。使用 `--dry-run` 可以预览结果而不写文件。
 发布工作流默认 `dry_run=true`。dry-run 会上传 Actions Artifact，但不会提交、打 Tag 或创建
 Release；正式发布使用 GitHub Actions Bot 和原子 push，不需要个人 PAT。
 
+Tag 和 Release 标题使用 `v<semver>`，预发布版本使用 `v<semver>-<preid>.<n>`。每个 Release
+固定包含 `arm64`/`x64` 两个 DMG 与 `SHA256SUMS`，正文按“下载、安装、完整性校验、自动生成变更”
+的格式输出。完整示例见[根 README](../README.md#版本与发布格式)。
+
 构建后的 `out/update-config.json` 由 `postbuild` 生成。GitHub Actions 使用
 `APP_UPDATE_REPOSITORY=${GITHUB_REPOSITORY}` 注入公开仓库坐标；未配置时应用明确禁用更新源，
 不会从本地 Git remote 推测账号。
+
+根 README 使用的模拟界面图维护在 [docs/screenshots](docs/screenshots/README.md)，必须从当前
+OpenPencil 高保真设计稿导出并逐张执行隐私检查。
 
 桌面端回归使用 TRAE Computer Use，并同时覆盖正向、边缘和负向场景。用例、执行记录和已知缺陷
 统一维护在 [docs/computer-use-regression.md](docs/computer-use-regression.md)。
@@ -118,5 +125,5 @@ Release；正式发布使用 GitHub Actions Bot 和原子 push，不需要个人
 [docs/design-decisions.md](docs/design-decisions.md)，桌面回归基线见
 [docs/computer-use-regression.md](docs/computer-use-regression.md)。
 
-当前自动化基线为 62 个测试文件、336 项测试，覆盖率通过语句/行 `90%`、分支/函数 `80%`
+当前自动化基线为 62 个测试文件、338 项测试，覆盖率通过语句/行 `90%`、分支/函数 `80%`
 门禁；具体百分比以后续最新 `npm run check` 输出为准。

@@ -322,6 +322,7 @@ ide-workdir-browser-code/README.md
 ide-workdir-browser-code/docs/PRD.md
 ide-workdir-browser-code/docs/design-decisions.md
 ide-workdir-browser-code/docs/computer-use-regression.md
+ide-workdir-browser-code/docs/screenshots/README.md
 ide-workdir-browser-design/README.md
 ide-workdir-browser-design/DESIGN-REVIEW.md
 ide-workdir-browser-design/UX-AUDIT.md
@@ -336,6 +337,8 @@ ide-workdir-browser-code/src/renderer/src/assets/agent-icons/README.md
 - 功能列表、限制、目录结构、命令和链接是否需要更新两个 README。
 - 开发流程、质量门禁或完成标准是否需要更新 `AGENTS.md`。
 - 设计范围和历史状态说明是否需要更新设计目录中的 README、Review 或 Audit。
+- README 软件界面图及其说明是否同步，图片是否从当前 OpenPencil 高保真设计稿导出，且没有
+  个人路径、账号、设备名或真实用户数据。
 - 第三方图标资产及来源变化时，是否需要更新 Agent 图标资产 README 和许可证说明。
 - 文档路径、相对链接、版本号、日期、测试数量和“已实现/受限/未开放”状态是否一致。
 

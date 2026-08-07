@@ -1,12 +1,21 @@
 /// <reference types="node" />
 
 import { execFileSync } from 'node:child_process'
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  statSync,
+  writeFileSync
+} from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 import { afterEach, describe, expect, it } from 'vitest'
 
 const versionScript = resolve('scripts/bump-version.mjs')
+const repoRoot = resolve(process.cwd(), '..')
 const temporaryDirectories: string[] = []
 
 const runVersionScript = (args: string[], cwd = process.cwd()): string =>
@@ -105,5 +114,35 @@ describe('app version control script', () => {
     }
 
     expect(packageJson.scripts['build:mac']).toContain('--publish never')
+  })
+
+  it('keeps the GitHub Release body and artifacts in the documented format', () => {
+    const workflow = readFileSync(join(repoRoot, '.github/workflows/release.yml'), 'utf8')
+
+    expect(workflow).toContain('# IDE Workdir Browser ${{ steps.metadata.outputs.tag }}')
+    expect(workflow).toContain('## Downloads')
+    expect(workflow).toContain('## Installation')
+    expect(workflow).toContain('shasum -a 256 -c SHA256SUMS')
+    expect(workflow).toContain(
+      'IDE Workdir Browser-${{ steps.metadata.outputs.version }}-arm64.dmg'
+    )
+    expect(workflow).toContain('IDE Workdir Browser-${{ steps.metadata.outputs.version }}-x64.dmg')
+  })
+
+  it('keeps every README screenshot linked and backed by a PNG design export', () => {
+    const readme = readFileSync(join(repoRoot, 'README.md'), 'utf8')
+    const screenshots = ['browser-overview.png', 'markdown-preview.png', 'appearance-settings.png']
+
+    screenshots.forEach((name) => {
+      const relativePath = `ide-workdir-browser-code/docs/screenshots/${name}`
+      const file = join(repoRoot, relativePath)
+
+      expect(readme).toContain(relativePath)
+      expect(existsSync(file)).toBe(true)
+      expect(readFileSync(file).subarray(0, 8)).toEqual(
+        Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a])
+      )
+      expect(statSync(file).size).toBeGreaterThan(10_000)
+    })
   })
 })

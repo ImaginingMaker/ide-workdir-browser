@@ -220,8 +220,29 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           {
+            echo "# IDE Workdir Browser ${{ steps.metadata.outputs.tag }}"
+            echo
             echo "> [!WARNING]"
             echo "> These macOS builds are not signed or notarized. Verify the SHA-256 checksum before use."
+            echo
+            echo "## Downloads"
+            echo
+            echo "| Architecture | Asset |"
+            echo "| --- | --- |"
+            echo "| Apple Silicon | \`IDE Workdir Browser-${{ steps.metadata.outputs.version }}-arm64.dmg\` |"
+            echo "| Intel | \`IDE Workdir Browser-${{ steps.metadata.outputs.version }}-x64.dmg\` |"
+            echo "| Checksums | \`SHA256SUMS\` |"
+            echo
+            echo "## Installation"
+            echo
+            echo "1. Download the DMG for your Mac architecture and \`SHA256SUMS\`."
+            echo "2. Verify the files from the download directory:"
+            echo
+            echo '   ```bash'
+            echo "   shasum -a 256 -c SHA256SUMS"
+            echo '   ```'
+            echo
+            echo "3. Open the DMG and drag IDE Workdir Browser into Applications."
             echo
             gh api \
               --method POST \
