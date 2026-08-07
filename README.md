@@ -105,9 +105,16 @@ shasum -a 256 -c SHA256SUMS
 
 打开 DMG，将应用拖入“应用程序”目录。
 
+如果校验通过后 macOS 仍提示无法打开未签名应用，可在终端执行：
+
+```bash
+xattr -dr com.apple.quarantine "/Applications/IDE Workdir Browser.app"
+open "/Applications/IDE Workdir Browser.app"
+```
+
 > [!WARNING]
 > 当前 DMG 未配置 Developer ID Application 签名和 notarization。正式分发和自动安装更新前仍需
-> 完成签名与公证；请在运行前核对 SHA-256 校验和。
+> 完成签名与公证。只应在确认下载来源和 SHA-256 校验和后执行上面的绕过命令。
 
 ## 版本与发布格式
 
@@ -139,6 +146,11 @@ Git Tag 和 GitHub Release 标题统一为 `v<version>`。Release 资产固定�
 ## Installation
 
 下载、校验并拖入“应用程序”目录。
+
+如 macOS 阻止未签名应用，执行：
+
+xattr -dr com.apple.quarantine "/Applications/IDE Workdir Browser.app"
+open "/Applications/IDE Workdir Browser.app"
 
 ## Verify integrity
 

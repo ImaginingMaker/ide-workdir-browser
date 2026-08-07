@@ -243,6 +243,12 @@ jobs:
             echo '   ```'
             echo
             echo "3. Open the DMG and drag IDE Workdir Browser into Applications."
+            echo "4. If macOS blocks the unsigned app after checksum verification, remove the quarantine attribute:"
+            echo
+            echo '   ```bash'
+            echo '   xattr -dr com.apple.quarantine "/Applications/IDE Workdir Browser.app"'
+            echo '   open "/Applications/IDE Workdir Browser.app"'
+            echo '   ```'
             echo
             gh api \
               --method POST \

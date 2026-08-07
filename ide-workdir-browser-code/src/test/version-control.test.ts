@@ -124,6 +124,10 @@ describe('app version control script', () => {
     expect(workflow).toContain('## Installation')
     expect(workflow).toContain('shasum -a 256 -c SHA256SUMS')
     expect(workflow).toContain(
+      'xattr -dr com.apple.quarantine "/Applications/IDE Workdir Browser.app"'
+    )
+    expect(workflow).toContain('open "/Applications/IDE Workdir Browser.app"')
+    expect(workflow).toContain(
       'IDE Workdir Browser-${{ steps.metadata.outputs.version }}-arm64.dmg'
     )
     expect(workflow).toContain('IDE Workdir Browser-${{ steps.metadata.outputs.version }}-x64.dmg')
