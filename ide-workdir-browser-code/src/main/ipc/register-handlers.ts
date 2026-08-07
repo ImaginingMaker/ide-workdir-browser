@@ -8,6 +8,7 @@ import type {
 import { IPC_CHANNELS } from '@shared/defaults'
 import type { FileSystemService } from '../services/file-system-service'
 import type { SettingsService } from '../services/settings-service'
+import type { UpdateService } from '../services/update-service'
 
 export const FILE_ACCESS_SETTINGS_URL =
   'x-apple.systempreferences:com.apple.preference.security?Privacy_FilesAndFolders'
@@ -15,12 +16,14 @@ export const FILE_ACCESS_SETTINGS_URL =
 export interface HandlerDependencies {
   settings: SettingsService
   files: FileSystemService
+  updates: UpdateService
 }
 
-export const registerIpcHandlers = ({ settings, files }: HandlerDependencies): void => {
+export const registerIpcHandlers = ({ settings, files, updates }: HandlerDependencies): void => {
   ipcMain.handle(IPC_CHANNELS.fileAccessOpenSettings, () =>
     shell.openExternal(FILE_ACCESS_SETTINGS_URL)
   )
+  ipcMain.handle(IPC_CHANNELS.updateCheck, () => updates.check())
   ipcMain.handle(IPC_CHANNELS.settingsGet, () => settings.get())
   ipcMain.handle(IPC_CHANNELS.settingsUpdate, (_, patch: SettingsPatch) => settings.update(patch))
   ipcMain.handle(IPC_CHANNELS.settingsReset, () => settings.reset())

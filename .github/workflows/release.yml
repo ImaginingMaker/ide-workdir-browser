@@ -1,0 +1,244 @@
+name: Release
+
+run-name: >-
+  Release ${{ inputs.explicit_version || inputs.increment }}
+  (${{ inputs.dry_run && 'dry-run' || 'publish' }})
+
+on:
+  workflow_dispatch:
+    inputs:
+      increment:
+        description: Semantic version increment
+        type: choice
+        required: true
+        default: patch
+        options:
+          - patch
+          - minor
+          - major
+          - prerelease
+      prerelease_id:
+        description: Prerelease identifier
+        type: string
+        required: true
+        default: rc
+      explicit_version:
+        description: Optional exact version, also used to recover an existing tag
+        type: string
+        required: false
+      dry_run:
+        description: Build artifacts without committing, tagging, or publishing
+        type: boolean
+        required: true
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Build and release
+    runs-on: macos-14
+    timeout-minutes: 60
+    defaults:
+      run:
+        shell: bash
+        working-directory: ide-workdir-browser-code
+    env:
+      GH_TOKEN: ${{ github.token }}
+      APP_UPDATE_REPOSITORY: ${{ github.repository }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Require the default branch
+        run: |
+          if [[ "$GITHUB_REF" != "refs/heads/main" ]]; then
+            echo "Release runs must start from main." >&2
+            exit 1
+          fi
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: ide-workdir-browser-code/package-lock.json
+
+      - name: Detect release recovery
+        id: resolve
+        run: |
+          explicit="${{ inputs.explicit_version }}"
+          echo "recovery=false" >> "$GITHUB_OUTPUT"
+
+          if [[ -z "$explicit" ]]; then
+            exit 0
+          fi
+
+          tag="v${explicit}"
+          if ! git show-ref --verify --quiet "refs/tags/${tag}"; then
+            exit 0
+          fi
+
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "Release ${tag} already exists and will not be overwritten." >&2
+            exit 1
+          fi
+
+          tagged_version="$(
+            git show "${tag}:ide-workdir-browser-code/package.json" |
+              node -e "let value=''; process.stdin.on('data', chunk => value += chunk); process.stdin.on('end', () => process.stdout.write(JSON.parse(value).version))"
+          )"
+          if [[ "$tagged_version" != "$explicit" ]]; then
+            echo "Tag ${tag} contains package version ${tagged_version}, not ${explicit}." >&2
+            exit 1
+          fi
+
+          git checkout --detach "$tag"
+          echo "recovery=true" >> "$GITHUB_OUTPUT"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Update version
+        if: steps.resolve.outputs.recovery != 'true'
+        run: |
+          if [[ -n "${{ inputs.explicit_version }}" ]]; then
+            npm run version:bump -- "${{ inputs.explicit_version }}"
+          elif [[ "${{ inputs.increment }}" == "prerelease" ]]; then
+            npm run version:bump -- prerelease --preid "${{ inputs.prerelease_id }}"
+          else
+            npm run version:bump -- "${{ inputs.increment }}"
+          fi
+
+      - name: Validate release metadata
+        id: metadata
+        run: |
+          version="$(node -p "require('./package.json').version")"
+          tag="v${version}"
+
+          if [[ -n "${{ inputs.explicit_version }}" && "$version" != "${{ inputs.explicit_version }}" ]]; then
+            echo "Resolved version ${version} does not match the requested explicit version." >&2
+            exit 1
+          fi
+
+          if [[ "${{ steps.resolve.outputs.recovery }}" != "true" ]]; then
+            if git show-ref --verify --quiet "refs/tags/${tag}"; then
+              echo "Tag ${tag} already exists. Use explicit_version only to recover an unpublished tag." >&2
+              exit 1
+            fi
+            if gh release view "$tag" >/dev/null 2>&1; then
+              echo "Release ${tag} already exists and will not be overwritten." >&2
+              exit 1
+            fi
+          fi
+
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
+          echo "tag=${tag}" >> "$GITHUB_OUTPUT"
+
+      - name: Format version files
+        run: npm run format
+
+      - name: Run quality gates
+        run: npm run check
+
+      - name: Build macOS DMGs
+        run: npm run build:mac
+
+      - name: Verify artifacts and write checksums
+        run: |
+          arm64_count="$(find dist -maxdepth 1 -type f -name '*-arm64.dmg' | wc -l | tr -d ' ')"
+          x64_count="$(find dist -maxdepth 1 -type f -name '*-x64.dmg' | wc -l | tr -d ' ')"
+          if [[ "$arm64_count" != "1" || "$x64_count" != "1" ]]; then
+            echo "Expected one arm64 DMG and one x64 DMG." >&2
+            find dist -maxdepth 1 -type f -print
+            exit 1
+          fi
+          (
+            cd dist
+            shasum -a 256 ./*.dmg > SHA256SUMS
+          )
+
+      - name: Upload workflow artifacts
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: ide-workdir-browser-${{ steps.metadata.outputs.version }}-macos
+          path: |
+            ide-workdir-browser-code/dist/*.dmg
+            ide-workdir-browser-code/dist/SHA256SUMS
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Summarize dry-run
+        if: inputs.dry_run
+        run: |
+          {
+            echo "## Release dry-run"
+            echo
+            echo "Validated version: \`${{ steps.metadata.outputs.version }}\`"
+            echo
+            echo "No commit, tag, or GitHub Release was created."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit and tag version
+        if: ${{ !inputs.dry_run && steps.resolve.outputs.recovery != 'true' }}
+        run: |
+          git -C "$GITHUB_WORKSPACE" config user.name "github-actions[bot]"
+          git -C "$GITHUB_WORKSPACE" config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C "$GITHUB_WORKSPACE" add \
+            README.md \
+            ide-workdir-browser-code/package.json \
+            ide-workdir-browser-code/package-lock.json \
+            ide-workdir-browser-code/src/shared/app-version.ts \
+            ide-workdir-browser-code/docs/PRD.md \
+            ide-workdir-browser-code/docs/computer-use-regression.md
+
+          if ! git -C "$GITHUB_WORKSPACE" diff --cached --quiet; then
+            git -C "$GITHUB_WORKSPACE" commit \
+              -m "chore(release): ${{ steps.metadata.outputs.tag }}"
+          fi
+
+          git -C "$GITHUB_WORKSPACE" tag -a "${{ steps.metadata.outputs.tag }}" \
+            -m "${{ steps.metadata.outputs.tag }}"
+          git -C "$GITHUB_WORKSPACE" push --atomic origin \
+            HEAD:main "refs/tags/${{ steps.metadata.outputs.tag }}"
+
+      - name: Generate release notes
+        if: ${{ !inputs.dry_run }}
+        run: |
+          {
+            echo "> [!WARNING]"
+            echo "> These macOS builds are not signed or notarized. Verify the SHA-256 checksum before use."
+            echo
+            gh api \
+              --method POST \
+              "repos/${GITHUB_REPOSITORY}/releases/generate-notes" \
+              -f "tag_name=${{ steps.metadata.outputs.tag }}" \
+              -f "target_commitish=${{ steps.metadata.outputs.tag }}" \
+              --jq .body
+          } > dist/RELEASE_NOTES.md
+
+      - name: Publish GitHub Release
+        if: ${{ !inputs.dry_run }}
+        run: |
+          release_args=(
+            "${{ steps.metadata.outputs.tag }}"
+            --verify-tag
+            --title "${{ steps.metadata.outputs.tag }}"
+            --notes-file dist/RELEASE_NOTES.md
+          )
+          if [[ "${{ steps.metadata.outputs.version }}" == *-* ]]; then
+            release_args+=(--prerelease)
+          fi
+          gh release create \
+            "${release_args[@]}" \
+            dist/*.dmg \
+            dist/SHA256SUMS

@@ -20,6 +20,7 @@ const getDroppedFilePath = (file: unknown): string | null => {
 
 const api: WorkdirApi = {
   openFileAccessSettings: () => ipcRenderer.invoke(IPC_CHANNELS.fileAccessOpenSettings),
+  checkForUpdates: () => ipcRenderer.invoke(IPC_CHANNELS.updateCheck),
   getSettings: () => ipcRenderer.invoke(IPC_CHANNELS.settingsGet),
   updateSettings: (patch: SettingsPatch) => ipcRenderer.invoke(IPC_CHANNELS.settingsUpdate, patch),
   resetSettings: () => ipcRenderer.invoke(IPC_CHANNELS.settingsReset),

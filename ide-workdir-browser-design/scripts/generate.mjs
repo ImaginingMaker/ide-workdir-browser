@@ -2313,11 +2313,7 @@ function inspectorSelected(C) {
             fontWeight: 650,
             fill: solid(C.foreground),
           }),
-          metadataRow(
-            "完整路径",
-            `~/.codex/projects/${item.name}`,
-            C,
-          ),
+          metadataRow("完整路径", `~/.codex/projects/${item.name}`, C),
           metadataRow("种类", item.type, C),
           metadataRow("大小", item.size, C),
           metadataRow("修改时间", item.modified, C),
@@ -3628,11 +3624,11 @@ function settingsResetDialog(C) {
 }
 
 function aboutPage(C) {
-  return settingsShell("关于", "版本信息、许可与快捷键参考。", C, [
+  return settingsShell("关于", "版本、更新与快捷键参考。", C, [
     frame(
       {
         width: "fill_container",
-        height: 210,
+        height: 250,
         layout: "vertical",
         gap: 7,
         alignItems: "center",
@@ -3644,15 +3640,36 @@ function aboutPage(C) {
       },
       [
         image(appIcon, 76, 76),
-        text("IDE 工作目录浏览器", {
+        text("IDE Workdir Browser", {
           fontSize: 16,
           fontWeight: 650,
           fill: solid(C.foreground),
         }),
-        text("v1.0.0", { fill: solid(C.secondary) }),
-        text("Electron 38.1 · Node 22.18 · Chromium 140", {
+        text("版本 0.1.0 · macOS 13+", { fill: solid(C.secondary) }),
+        text("统一浏览和管理 AI 编程 Agent 的工作目录。", {
           fill: solid(C.secondary),
         }),
+        frame(
+          {
+            width: "fit_content",
+            height: 30,
+            layout: "horizontal",
+            gap: 8,
+            alignItems: "center",
+          },
+          [
+            actionButton("检查更新", C, true),
+            text("发现新版本 0.2.0", {
+              fontSize: 12,
+              fill: solid(C.success),
+            }),
+            text("查看并下载", {
+              fontSize: 12,
+              fontWeight: 600,
+              fill: solid(C.primary),
+            }),
+          ],
+        ),
       ],
     ),
     frame(

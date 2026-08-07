@@ -123,6 +123,7 @@ export const DEFAULT_SETTINGS: AppSettings = {
 
 export const IPC_CHANNELS = {
   fileAccessOpenSettings: 'permissions:file-access:open-settings',
+  updateCheck: 'app:update:check',
   settingsGet: 'settings:get',
   settingsUpdate: 'settings:update',
   settingsReset: 'settings:reset',

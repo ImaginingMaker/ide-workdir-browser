@@ -53,6 +53,21 @@ npm run version:bump -- 0.2.0
 脚本会同步 `package.json`、`package-lock.json`、共享版本常量、PRD、Computer Use 回归归档和根
 README。使用 `--dry-run` 可以预览结果而不写文件。
 
+## GitHub Actions 发布
+
+仓库提供两个工作流：
+
+- `CI` 在 Pull Request 和 `main` 推送时执行 `npm run check` 与生产 Bundle 构建。
+- `Release` 通过 `workflow_dispatch` 手动选择 patch、minor、major 或 prerelease，并自动执行
+  版本同步、质量门禁、双架构 DMG、`SHA256SUMS`、版本提交、Tag 和 GitHub Release。
+
+发布工作流默认 `dry_run=true`。dry-run 会上传 Actions Artifact，但不会提交、打 Tag 或创建
+Release；正式发布使用 GitHub Actions Bot 和原子 push，不需要个人 PAT。
+
+构建后的 `out/update-config.json` 由 `postbuild` 生成。GitHub Actions 使用
+`APP_UPDATE_REPOSITORY=${GITHUB_REPOSITORY}` 注入公开仓库坐标；未配置时应用明确禁用更新源，
+不会从本地 Git remote 推测账号。
+
 桌面端回归使用 TRAE Computer Use，并同时覆盖正向、边缘和负向场景。用例、执行记录和已知缺陷
 统一维护在 [docs/computer-use-regression.md](docs/computer-use-regression.md)。
 
@@ -83,6 +98,8 @@ README。使用 `--dry-run` 可以预览结果而不写文件。
 - 相对路径和绝对路径的访问入口必须位于 Agent 配置根目录内；根目录任意层级中的符号链接允许指向并访问根目录外的文件或文件夹。
 - 应用不执行文件内容。
 - 外部打开和 Finder 定位同样经过路径边界校验。
+- Renderer 不直接联网；用户在关于页触发更新检查后，由 Main Process 匿名读取最新稳定版
+  GitHub Release，并只返回经过仓库 URL allowlist 校验的结果。
 
 ## 当前里程碑
 
@@ -91,15 +108,15 @@ README。使用 `--dry-run` 可以预览结果而不写文件。
 文件夹统计、Finder 拖入复制、跨 Agent 复制/剪切/粘贴、冲突处理、进程内撤销、浅深色主题、
 响应式布局和独立设置工作台。文件区还提供 SQLite、JSON/JSONL、Markdown、配置等语义图标，
 以及线框、实心、双色三套可持久化文件夹图标预设。单选项目支持经二次确认移到 macOS
-废纸篓，并由主进程执行路径边界和符号链接保护。
+废纸篓，并由主进程执行路径边界和符号链接保护；关于页支持用户主动检查最新稳定版本。
 
 当前仍未开放文件多选、真正的目录分页、搜索范围切换、自定义 Agent 管理、应用内废纸篓恢复、
-批量废纸篓和永久删除。撤销记录与浏览状态不跨应用重启持久化，正式分发所需的代码签名和
-notarization 尚未完成。
+批量废纸篓和永久删除。撤销记录与浏览状态不跨应用重启持久化。当前自动发布的 DMG 未签名且
+未公证，只提供 Release 页面跳转和手动下载，不支持自动安装更新。
 
 当前产品基线见 [docs/PRD.md](docs/PRD.md)，设计纠正记录见
 [docs/design-decisions.md](docs/design-decisions.md)，桌面回归基线见
 [docs/computer-use-regression.md](docs/computer-use-regression.md)。
 
-当前自动化基线为 59 个测试文件、269 项测试，覆盖率通过语句/行 `90%`、分支/函数 `80%`
+当前自动化基线为 62 个测试文件、335 项测试，覆盖率通过语句/行 `90%`、分支/函数 `80%`
 门禁；具体百分比以后续最新 `npm run check` 输出为准。

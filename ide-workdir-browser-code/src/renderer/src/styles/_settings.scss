@@ -534,6 +534,65 @@
   }
 }
 
+.update-check {
+  display: flex;
+  max-width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 9px;
+  flex-wrap: wrap;
+}
+
+.update-check__button,
+.update-check__download {
+  min-height: 30px;
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  font-size: 0.6875rem;
+  font-weight: 650;
+}
+
+.update-check__button {
+  background: var(--primary);
+  color: var(--on-primary);
+
+  &:hover:not(:disabled) {
+    filter: brightness(0.96);
+  }
+}
+
+.update-check__download {
+  border: 1px solid var(--separator);
+  color: var(--primary);
+  text-decoration: none;
+
+  &:hover {
+    background: var(--control-hover);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+}
+
+.update-check__status {
+  max-width: 100%;
+  font-size: 0.6875rem;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.update-check__status--available,
+.update-check__status--current {
+  color: var(--state-success);
+}
+
+.update-check__status--error {
+  color: var(--state-error);
+}
+
 .app-logo {
   display: block;
   width: 76px;

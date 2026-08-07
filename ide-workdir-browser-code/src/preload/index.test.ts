@@ -37,6 +37,7 @@ describe('preload workdir API', () => {
     expect(Object.keys(api).sort()).toEqual(
       [
         'openFileAccessSettings',
+        'checkForUpdates',
         'getSettings',
         'updateSettings',
         'resetSettings',
@@ -79,6 +80,7 @@ describe('preload workdir API', () => {
 
     await Promise.all([
       api.openFileAccessSettings(),
+      api.checkForUpdates(),
       api.getSettings(),
       api.updateSettings(settingsPatch),
       api.resetSettings(),
@@ -101,6 +103,7 @@ describe('preload workdir API', () => {
 
     expect(mocks.invoke.mock.calls).toEqual([
       [IPC_CHANNELS.fileAccessOpenSettings],
+      [IPC_CHANNELS.updateCheck],
       [IPC_CHANNELS.settingsGet],
       [IPC_CHANNELS.settingsUpdate, settingsPatch],
       [IPC_CHANNELS.settingsReset],

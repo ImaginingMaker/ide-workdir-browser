@@ -6,6 +6,7 @@ import { SettingsService } from './services/settings-service'
 import { WindowService } from './services/window-service'
 import { MenuService } from './services/menu-service'
 import { resolveAppIconPath } from './services/app-icon-service'
+import { readUpdateRepository, UpdateService } from './services/update-service'
 
 if (process.platform !== 'darwin') {
   app.whenReady().then(() => app.quit())
@@ -14,6 +15,7 @@ if (process.platform !== 'darwin') {
   const files = new FileSystemService(settings)
   const windows = new WindowService()
   const menu = new MenuService()
+  const updates = new UpdateService(app.getVersion(), readUpdateRepository(app.getAppPath()))
 
   app.whenReady().then(() => {
     electronApp.setAppUserModelId('com.ideworkdir.browser')
@@ -25,7 +27,7 @@ if (process.platform !== 'darwin') {
     })
     app.on('browser-window-created', (_, window) => optimizer.watchWindowShortcuts(window))
 
-    registerIpcHandlers({ settings, files })
+    registerIpcHandlers({ settings, files, updates })
     windows.create()
     menu.install(() => windows.getCurrent())
 

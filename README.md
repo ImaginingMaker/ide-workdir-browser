@@ -37,6 +37,7 @@
 - 浅色、深色、强调色、缩放及隐藏文件设置
 - 可折叠左右面板和窄窗响应式布局
 - Electron 原生快捷键与状态栏快捷键速查
+- 关于页手动检查最新稳定版并跳转 GitHub Release
 - macOS arm64/x64 构建配置
 
 尚未完成的主要能力：
@@ -55,6 +56,7 @@
 
 ```text
 .
+├── .github/workflows/                # CI 与手动版本发布
 ├── ide-workdir-browser-design/        # OpenPencil 设计、HTML 原型和设计审查
 ├── ide-workdir-browser-code/          # Electron 应用源码
 │   ├── docs/PRD.md                    # 产品需求与验收真源
@@ -151,6 +153,15 @@ npm run version:bump -- patch
 
 `npm run build` 会先执行完整的 `npm run check`，检查失败时不生成生产构建。
 
+GitHub Actions 包含：
+
+- `CI`：Pull Request 和 `main` 推送时执行完整检查与生产 Bundle 构建。
+- `Release`：手动选择 patch、minor、major 或 prerelease，默认 dry-run；验证通过后可生成双架构
+  DMG、SHA-256 校验和、版本提交、Tag 和 GitHub Release。
+
+Release dry-run 不修改 `main`，也不创建 Tag 或 Release。正式发布使用 GitHub Actions Bot，
+并拒绝覆盖已有版本。
+
 桌面端真实用户回归使用正向、边缘和负向用例库：
 
 - [Computer Use 回归测试归档](ide-workdir-browser-code/docs/computer-use-regression.md)
@@ -178,8 +189,16 @@ npm run build:mac
 ide-workdir-browser-code/dist/mac-arm64/IDE Workdir Browser.app
 ```
 
-当前构建未配置 Developer ID Application 签名和 notarization。正式分发前必须补充签名、
-公证、版本发布和更新策略。
+当前自动发布的 DMG 未配置 Developer ID Application 签名和 notarization。使用前应校验
+`SHA256SUMS`；正式分发和自动安装更新前必须补充签名与公证。
+
+## 软件更新
+
+应用在“设置 > 关于”提供“检查更新”。只有用户点击后，Main Process 才匿名读取公开仓库的最新
+稳定版 GitHub Release；不会上传工作目录、文件内容、应用设置、设备标识或凭据。
+
+发现新版后，应用通过系统浏览器打开经过仓库 allowlist 校验的 Release 页面。当前不自动下载或
+安装更新，draft 和 prerelease 也不会进入稳定版检查结果。
 
 ## 架构
 
@@ -194,6 +213,7 @@ Main Process
     ├── WindowService
     ├── MenuService
     ├── SettingsService
+    ├── UpdateService
     ├── FileSystemService
     └── PathPolicy
 ```
@@ -208,6 +228,7 @@ Main Process
 - 工作目录内的符号链接入口允许访问其目标，即使目标位于工作目录外。
 - 搜索默认不递归符号链接目录；仅在开启“跟随符号链接”后递归。
 - 应用只读取和展示文件内容，不执行文件内容。
+- Renderer 不直接联网；更新检查通过最小类型化 IPC 交给 Main Process。
 
 ## UI 基线
 

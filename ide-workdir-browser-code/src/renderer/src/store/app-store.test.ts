@@ -28,6 +28,7 @@ const createDeferred = <T>(): {
 describe('app store', () => {
   const api: WorkdirApi = {
     openFileAccessSettings: vi.fn(),
+    checkForUpdates: vi.fn(),
     getSettings: vi.fn().mockResolvedValue(DEFAULT_SETTINGS),
     updateSettings: vi.fn().mockResolvedValue(DEFAULT_SETTINGS),
     resetSettings: vi.fn().mockResolvedValue(DEFAULT_SETTINGS),

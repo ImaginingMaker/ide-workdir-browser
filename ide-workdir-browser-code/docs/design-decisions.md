@@ -28,6 +28,7 @@ Inspector 收起时保持组件挂载，但不得在主内容区留下残余布�
 - Markdown 渲染支持 GFM 与 Mermaid fenced code block；源码和常见配置/代码文件使用彩色语法高亮，JSON/JSONC 在展示层格式化。
 - 搜索结果使用主内容区工作台，不使用小浮层。
 - 设置是独立工作台，不渲染浏览导航、视图切换、搜索、统计或刷新。
+- 关于页承载应用版本、手动稳定版检查和快捷键参考；更新检查不在启动时自动执行。
 - 每个 Agent 独立保存路径、历史、视图、选择、搜索和 Inspector 状态。
 - 产品范围固定为 10 个默认 Agent：Codex、Claude Code、Cursor、Zed、Trae、VS Code、
   Gemini CLI、OpenCode、Windsurf 和 Kiro；不采用旧 HTML 中的 4 Agent 口径。
@@ -55,6 +56,11 @@ Inspector 收起时保持组件挂载，但不得在主内容区留下残余布�
 - 工作目录内的所有子入口均放行。符号链接即使指向工作目录外部，也可通过该入口浏览和预览。
 - 对符号链接入口执行移到废纸篓时，只移动链接入口本身，不删除链接目标。
 - 搜索默认不递归符号链接目录；开启“跟随符号链接”后才递归，降低循环扫描风险。
+- 更新检查由 Main Process 匿名访问构建时注入的 GitHub `releases/latest`；Renderer 只获得
+  类型化状态，不接触网络、仓库配置或原始响应。
+- Release URL 必须通过 HTTPS 主机和同仓库路径 allowlist，随后复用窗口服务交给系统浏览器。
+- 当前未签名构建只允许检查和跳转下载；自动下载、安装和启动检查在 Developer ID 签名与
+  notarization 完成前不开放。
 
 ## 测试与文档
 
@@ -62,6 +68,8 @@ Inspector 收起时保持组件挂载，但不得在主内容区留下残余布�
   可访问性树、响应式布局和 Electron 运行时回归。
 - `npm run check` 同时承担隐私扫描、版本一致性、格式、Lint、类型和覆盖率门禁；Git
   pre-commit hook 复用同一套提交前检查。
+- GitHub CI 对 Pull Request 和 `main` 执行检查与生产 Bundle 构建；Release workflow 默认
+  dry-run，正式发布使用 Bot 身份、原子推送版本提交和 Tag，并拒绝覆盖已有 Release。
 - Computer Use 用例统一维护在
   [computer-use-regression.md](computer-use-regression.md)，并按正向、边缘、负向分类。
 - 桌面回归失败必须保留为失败用例并关联缺陷，不能通过降低预期或删除记录使验收通过。

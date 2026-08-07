@@ -8,6 +8,7 @@ const mocks = vi.hoisted(() => ({
   setDockIcon: vi.fn(),
   setAboutPanelOptions: vi.fn(),
   getVersion: vi.fn(() => '0.1.0-test'),
+  getAppPath: vi.fn(() => '/application'),
   getAllWindows: vi.fn((): unknown[] => []),
   watchWindowShortcuts: vi.fn(),
   registerIpcHandlers: vi.fn(),
@@ -17,8 +18,11 @@ const mocks = vi.hoisted(() => ({
   windowGetCurrent: vi.fn(() => ({ id: 'current-window' })),
   menuInstall: vi.fn(),
   resolveAppIconPath: vi.fn(() => '/resolved/icon.png'),
+  readUpdateRepository: vi.fn(() => 'example/project'),
+  createUpdates: vi.fn(),
   settings: { id: 'settings-service' },
-  files: { id: 'file-system-service' }
+  files: { id: 'file-system-service' },
+  updates: { id: 'update-service' }
 }))
 
 vi.mock('electron', () => ({
@@ -29,6 +33,7 @@ vi.mock('electron', () => ({
     dock: { setIcon: mocks.setDockIcon },
     setAboutPanelOptions: mocks.setAboutPanelOptions,
     getVersion: mocks.getVersion,
+    getAppPath: mocks.getAppPath,
     isPackaged: false
   },
   BrowserWindow: { getAllWindows: mocks.getAllWindows }
@@ -76,6 +81,14 @@ vi.mock('./services/app-icon-service', () => ({
   resolveAppIconPath: mocks.resolveAppIconPath
 }))
 
+vi.mock('./services/update-service', () => ({
+  readUpdateRepository: mocks.readUpdateRepository,
+  UpdateService: vi.fn(function UpdateService(version: string, repository: string) {
+    mocks.createUpdates(version, repository)
+    return mocks.updates
+  })
+}))
+
 const originalPlatform = Object.getOwnPropertyDescriptor(process, 'platform')
 
 const importMain = async (platform: string): Promise<void> => {
@@ -101,6 +114,7 @@ describe('main process bootstrap', () => {
     await vi.waitFor(() => expect(mocks.quit).toHaveBeenCalledOnce())
 
     expect(mocks.createSettings).not.toHaveBeenCalled()
+    expect(mocks.createUpdates).not.toHaveBeenCalled()
     expect(mocks.registerIpcHandlers).not.toHaveBeenCalled()
     expect(mocks.windowCreate).not.toHaveBeenCalled()
   })
@@ -110,9 +124,12 @@ describe('main process bootstrap', () => {
     await vi.waitFor(() => expect(mocks.registerIpcHandlers).toHaveBeenCalledOnce())
 
     expect(mocks.createFiles).toHaveBeenCalledWith(mocks.settings)
+    expect(mocks.readUpdateRepository).toHaveBeenCalledWith('/application')
+    expect(mocks.createUpdates).toHaveBeenCalledWith('0.1.0-test', 'example/project')
     expect(mocks.registerIpcHandlers).toHaveBeenCalledWith({
       settings: mocks.settings,
-      files: mocks.files
+      files: mocks.files,
+      updates: mocks.updates
     })
     expect(mocks.setAppUserModelId).toHaveBeenCalledWith('com.ideworkdir.browser')
     expect(mocks.resolveAppIconPath).toHaveBeenCalledOnce()

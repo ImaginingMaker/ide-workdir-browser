@@ -34,6 +34,7 @@ describe('registerIpcHandlers', () => {
   it('registers every typed preload channel', () => {
     registerIpcHandlers({
       settings: { get: vi.fn(), update: vi.fn(), reset: vi.fn() },
+      updates: { check: vi.fn() },
       files: {
         getAgents: vi.fn(),
         readDirectory: vi.fn(),
@@ -51,6 +52,7 @@ describe('registerIpcHandlers', () => {
   it('opens only the fixed Files and Folders system settings pane', async () => {
     registerIpcHandlers({
       settings: {} as never,
+      updates: {} as never,
       files: {} as never
     })
     const openHandler = mocks.handle.mock.calls.find(
@@ -68,6 +70,7 @@ describe('registerIpcHandlers', () => {
     const getFileItem = vi.fn()
     registerIpcHandlers({
       settings: {} as never,
+      updates: {} as never,
       files: { getFileItem } as never
     })
     const handler = mocks.handle.mock.calls.find(
@@ -83,6 +86,7 @@ describe('registerIpcHandlers', () => {
     const reset = vi.fn()
     registerIpcHandlers({
       settings: { get: vi.fn(), update: vi.fn(), reset },
+      updates: {} as never,
       files: {} as never
     } as never)
     const handler = mocks.handle.mock.calls.find(
@@ -113,7 +117,8 @@ describe('registerIpcHandlers', () => {
       trashItem: vi.fn(),
       resolveSafePath: vi.fn((_, path: string) => Promise.resolve(`/safe${path}`))
     }
-    registerIpcHandlers({ settings, files } as never)
+    const updates = { check: vi.fn(() => ({ status: 'current' })) }
+    registerIpcHandlers({ settings, files, updates } as never)
     const handlers = Object.fromEntries(
       mocks.handle.mock.calls.map(([channel, handler]) => [channel, handler])
     )
@@ -132,6 +137,7 @@ describe('registerIpcHandlers', () => {
     }
 
     expect(handlers[IPC_CHANNELS.settingsGet]()).toEqual({ theme: 'auto' })
+    expect(handlers[IPC_CHANNELS.updateCheck]()).toEqual({ status: 'current' })
     expect(handlers[IPC_CHANNELS.settingsUpdate]({}, { theme: 'dark' })).toEqual({ theme: 'dark' })
     expect(handlers[IPC_CHANNELS.agentsGet]()).toEqual(['codex'])
     handlers[IPC_CHANNELS.directoryRead]({}, 'codex', '/workspace')
@@ -147,6 +153,7 @@ describe('registerIpcHandlers', () => {
     await handlers[IPC_CHANNELS.openExternal]({}, 'codex', '/workspace/guide.md')
 
     expect(files.readDirectory).toHaveBeenCalledWith('codex', '/workspace')
+    expect(updates.check).toHaveBeenCalledOnce()
     expect(files.search).toHaveBeenCalledWith(searchRequest)
     expect(files.thumbnail).toHaveBeenCalledWith('codex', '/workspace/cover.png')
     expect(files.preview).toHaveBeenCalledWith('codex', '/workspace/guide.md')
@@ -163,6 +170,7 @@ describe('registerIpcHandlers', () => {
   it('returns the selected directory and handles cancellation', async () => {
     registerIpcHandlers({
       settings: {} as never,
+      updates: {} as never,
       files: {} as never
     })
     const handler = mocks.handle.mock.calls.find(
@@ -186,6 +194,7 @@ describe('registerIpcHandlers', () => {
     mocks.openPath.mockResolvedValueOnce('No application can open this file')
     registerIpcHandlers({
       settings: {} as never,
+      updates: {} as never,
       files: { resolveSafePath } as never
     })
     const handler = mocks.handle.mock.calls.find(
@@ -208,6 +217,7 @@ describe('registerIpcHandlers', () => {
     (operation, method) => {
       registerIpcHandlers({
         settings: { get: vi.fn(), update: vi.fn() },
+        updates: {} as never,
         files: {} as never
       } as never)
       const handler = mocks.handle.mock.calls.find(
@@ -230,6 +240,7 @@ describe('registerIpcHandlers', () => {
   it('rejects unsupported text edit operations', () => {
     registerIpcHandlers({
       settings: { get: vi.fn(), update: vi.fn() },
+      updates: {} as never,
       files: {} as never
     } as never)
     const handler = mocks.handle.mock.calls.find(

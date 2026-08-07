@@ -72,6 +72,7 @@
 - BrowserWindow 和 macOS 菜单
 - 文件系统访问
 - 搜索和预览
+- 稳定版更新检查
 - 设置持久化
 - Finder、系统剪贴板等原生能力
 - IPC handler 注册
@@ -132,6 +133,14 @@ sandbox: true;
 - 开启 `followSymlinks` 后才允许搜索递归符号链接，并应防止循环和超时。
 - Finder 定位、外部打开等操作同样经过入口路径校验。
 - 不执行、不解释、不动态导入用户文件内容。
+
+网络更新规则：
+
+- Renderer 不直接发起更新网络请求，只通过类型化 IPC 调用 Main Process。
+- 更新检查只能由用户主动触发，不在应用启动时静默请求。
+- 请求固定公开仓库的 GitHub 稳定版 Release，不发送工作目录、文件内容、设置、设备标识或凭据。
+- Release 外链必须校验为 HTTPS、`github.com` 且属于构建时配置的同一仓库。
+- 未完成 Developer ID 签名和 notarization 前，不启用自动下载或安装更新。
 
 涉及写操作时，必须先实现完整的影响范围、二次确认、冲突策略和恢复方案。不要为了“先可用”
 而绕过这些约束。
@@ -272,6 +281,7 @@ Sass：
 - 侧边栏、Inspector 收缩状态
 - 图标/列表/分栏视图交互
 - 搜索、预览和设置行为
+- 版本递增、更新源生成、稳定版检查和 Release URL allowlist
 - 错误、空态和超限状态
 - 仓库隐私扫描，确保维护范围内的代码、文档、设计资产和测试夹具不包含个人路径、内部域名或
   凭据形态数据
@@ -347,6 +357,7 @@ npm run typecheck
 npm test
 npm run test:coverage
 npm run privacy:check
+npm run generate:update-config
 npm run version:check
 npm run version:bump -- patch --dry-run
 npm run precommit
@@ -378,6 +389,13 @@ npm run build:mac
 
 1. 运行 `npm run build:unpack` 或 `npm run build:mac`。
 2. 说明代码签名和 notarization 状态。
+
+涉及 `.github/workflows/`、版本发布或 Release 产物时，还必须：
+
+1. 使用 GitHub Actions Bot 和最小 `GITHUB_TOKEN` 权限，不写入个人 PAT。
+2. 先执行 Release workflow dry-run，确认质量门禁、双架构 DMG、`SHA256SUMS` 和 Artifact。
+3. dry-run 不得修改 `main`、创建 Tag 或 Release；已有 Release 不得静默覆盖。
+4. 正式发布必须原子推送版本提交与 Tag，并明确报告签名和 notarization 状态。
 
 最终说明应简洁列出：
 

@@ -12,6 +12,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "generate:icons": "bash scripts/generate-icons.sh",
+    "generate:update-config": "node scripts/generate-update-config.mjs",
     "lint": "eslint --cache --cache-location node_modules/.cache/eslint/.eslintcache .",
     "prepare": "node scripts/install-git-hooks.mjs",
     "precommit": "npm run check",
@@ -29,6 +30,7 @@
     "test:coverage": "vitest run --coverage",
     "check": "npm run privacy:check && npm run version:check && npm run format:check && npm run lint && npm run typecheck && npm run test:coverage",
     "build": "npm run check && electron-vite build",
+    "postbuild": "npm run generate:update-config",
     "postinstall": "electron-builder install-app-deps",
     "build:unpack": "npm run build && electron-builder --dir --mac",
     "build:mac": "npm run build && electron-builder --mac"

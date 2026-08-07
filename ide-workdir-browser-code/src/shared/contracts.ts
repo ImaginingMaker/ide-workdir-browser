@@ -9,6 +9,29 @@ export type FileKind = 'file' | 'directory' | 'symlink'
 export type DropConflictStrategy = 'keep-both' | 'replace' | 'skip'
 export type FileTransferOperation = 'copy' | 'cut'
 export type TextEditOperation = 'copy' | 'cut' | 'paste' | 'select-all'
+export type UpdateCheckError = 'network' | 'rate-limited' | 'timeout' | 'invalid-response'
+export type UpdateCheckResult =
+  | {
+      status: 'available'
+      currentVersion: string
+      latestVersion: string
+      releaseUrl: string
+      publishedAt: string
+    }
+  | {
+      status: 'current'
+      currentVersion: string
+      latestVersion: string
+    }
+  | {
+      status: 'no-release' | 'unconfigured'
+      currentVersion: string
+    }
+  | {
+      status: 'error'
+      currentVersion: string
+      error: UpdateCheckError
+    }
 export type AppCommand =
   | 'focus-search'
   | 'view-icon'
@@ -188,6 +211,7 @@ export interface WorkspaceState {
 
 export interface WorkdirApi {
   openFileAccessSettings(): Promise<void>
+  checkForUpdates(): Promise<UpdateCheckResult>
   getSettings(): Promise<AppSettings>
   updateSettings(patch: SettingsPatch): Promise<AppSettings>
   resetSettings(): Promise<AppSettings>
