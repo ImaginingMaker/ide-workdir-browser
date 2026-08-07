@@ -16,7 +16,7 @@ IDE Workdir Browser 将 Codex、Claude Code、Cursor、Zed、Trae、VS Code、Ge
 OpenCode、Windsurf 和 Kiro 的工作目录集中到一个 Finder 风格界面中。每个 Agent 独立保存路径、
 导航历史、标签、搜索上下文、选择和 Inspector 状态，切换时不会混用工作区。
 
-项目处于 `0.1.0` 开发阶段，仅支持 macOS。
+项目处于 `0.1.1` 开发阶段，仅支持 macOS。
 
 ## 界面预览
 

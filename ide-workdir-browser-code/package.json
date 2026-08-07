@@ -1,6 +1,6 @@
 {
   "name": "ide-workdir-browser",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A macOS workspace browser for AI coding agents",
   "main": "./out/main/index.js",
   "author": "IDE Workdir Browser",
