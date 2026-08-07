@@ -336,6 +336,46 @@ describe('FileBrowser', () => {
     })
   })
 
+  it('renders the context menu above clipped panels and keeps it inside the viewport', () => {
+    const menuWidth = 224
+    const menuHeight = 250
+    const widthSpy = vi
+      .spyOn(HTMLElement.prototype, 'offsetWidth', 'get')
+      .mockImplementation(function (this: HTMLElement) {
+        return this.classList.contains('file-context-menu') ? menuWidth : 0
+      })
+    const heightSpy = vi
+      .spyOn(HTMLElement.prototype, 'offsetHeight', 'get')
+      .mockImplementation(function (this: HTMLElement) {
+        return this.classList.contains('file-context-menu') ? menuHeight : 0
+      })
+    useAppStore.setState({
+      listing: {
+        path: agentFixture.resolvedWorkdir,
+        parentPath: null,
+        items: [folderFixture],
+        truncated: false
+      }
+    })
+    render(<FileBrowser />)
+    const browser = screen.getByRole('main')
+
+    fireEvent.contextMenu(screen.getByRole('gridcell', { name: folderFixture.name }), {
+      clientX: window.innerWidth - 2,
+      clientY: window.innerHeight - 2
+    })
+
+    const menu = screen.getByRole('menu')
+    expect(browser).not.toContainElement(menu)
+    expect(menu.parentElement).toBe(document.body)
+    expect(menu).toHaveStyle({
+      left: `${window.innerWidth - menuWidth - 8}px`,
+      top: `${window.innerHeight - menuHeight - 8}px`
+    })
+    widthSpy.mockRestore()
+    heightSpy.mockRestore()
+  })
+
   it('preflights an in-app paste with source agent and operation metadata', async () => {
     useAppStore.setState({
       fileClipboard: {

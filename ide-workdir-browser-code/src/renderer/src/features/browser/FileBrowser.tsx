@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { Icon } from '@renderer/components/ui/Icon'
 import { notify } from '@renderer/features/notifications/notification-store'
 import { copyPathToClipboard, revealPathInFinder } from '@renderer/services/native-actions'
@@ -30,9 +31,10 @@ interface PendingTrashOperation {
 }
 
 const FILE_CLICK_PREVIEW_DELAY_MS = 120
+const CONTEXT_MENU_VIEWPORT_MARGIN = 8
 
 export const FileBrowser = (): React.JSX.Element => {
-  const browserRef = useRef<HTMLElement>(null)
+  const contextMenuRef = useRef<HTMLDivElement>(null)
   const [isDraggingFiles, setIsDraggingFiles] = useState(false)
   const [dragItemCount, setDragItemCount] = useState(0)
   const [dropTarget, setDropTarget] = useState<FileItem | null>(null)
@@ -97,6 +99,28 @@ export const FileBrowser = (): React.JSX.Element => {
       window.removeEventListener('click', close)
       window.removeEventListener('keydown', closeOnEscape)
     }
+  }, [contextMenu])
+
+  useLayoutEffect(() => {
+    const menu = contextMenuRef.current
+    if (!contextMenu || !menu) return
+
+    const x = Math.min(
+      Math.max(contextMenu.x, CONTEXT_MENU_VIEWPORT_MARGIN),
+      Math.max(
+        CONTEXT_MENU_VIEWPORT_MARGIN,
+        window.innerWidth - menu.offsetWidth - CONTEXT_MENU_VIEWPORT_MARGIN
+      )
+    )
+    const y = Math.min(
+      Math.max(contextMenu.y, CONTEXT_MENU_VIEWPORT_MARGIN),
+      Math.max(
+        CONTEXT_MENU_VIEWPORT_MARGIN,
+        window.innerHeight - menu.offsetHeight - CONTEXT_MENU_VIEWPORT_MARGIN
+      )
+    )
+    if (x === contextMenu.x && y === contextMenu.y) return
+    setContextMenu((current) => (current ? { ...current, x, y } : current))
   }, [contextMenu])
 
   const hasFilePayload = (dataTransfer: DataTransfer): boolean =>
@@ -342,18 +366,10 @@ export const FileBrowser = (): React.JSX.Element => {
     }
   }
 
-  const positionContextMenu = (event: React.MouseEvent): Pick<ContextMenuState, 'x' | 'y'> => {
-    const bounds = browserRef.current?.getBoundingClientRect()
-    return {
-      x: event.clientX - (bounds?.left ?? 0),
-      y: event.clientY - (bounds?.top ?? 0)
-    }
-  }
-
   const openContextMenu = (event: React.MouseEvent, item: FileItem | null): void => {
     event.preventDefault()
     event.stopPropagation()
-    setContextMenu({ ...positionContextMenu(event), item })
+    setContextMenu({ x: event.clientX, y: event.clientY, item })
     if (item) void selectItem(item)
   }
 
@@ -489,7 +505,6 @@ export const FileBrowser = (): React.JSX.Element => {
 
   return (
     <main
-      ref={browserRef}
       className={`file-browser motion-presence-enter ${isDraggingFiles ? 'is-dragging-files' : ''}`}
       tabIndex={0}
       onDragEnter={handleDragEnter}
@@ -503,92 +518,95 @@ export const FileBrowser = (): React.JSX.Element => {
       }}
     >
       {content}
-      {contextMenu && (
-        <div
-          className="file-context-menu motion-popover-enter"
-          style={{ left: contextMenu.x, top: contextMenu.y }}
-          role="menu"
-          onClick={(event) => event.stopPropagation()}
-        >
-          <button
-            type="button"
-            role="menuitem"
-            disabled={!contextItem}
-            onClick={() => contextItem && void openContextItem(contextItem)}
+      {contextMenu &&
+        createPortal(
+          <div
+            ref={contextMenuRef}
+            className="file-context-menu motion-popover-enter"
+            style={{ left: contextMenu.x, top: contextMenu.y }}
+            role="menu"
+            onClick={(event) => event.stopPropagation()}
           >
-            <span>打开</span>
-            <kbd>⌘O</kbd>
-          </button>
-          <button
-            type="button"
-            role="menuitem"
-            disabled={!contextItem}
-            onClick={() => contextItem && void revealContextItem(contextItem)}
-          >
-            <span>在 Finder 中显示</span>
-            <kbd>⌥⌘O</kbd>
-          </button>
-          <div className="file-context-menu__separator" />
-          <button
-            type="button"
-            role="menuitem"
-            disabled={!contextItem}
-            onClick={() => contextItem && copyContextItem('copy', contextItem)}
-          >
-            <span>复制</span>
-            <kbd>⌘C</kbd>
-          </button>
-          <button
-            type="button"
-            role="menuitem"
-            disabled={!contextItem}
-            onClick={() => contextItem && copyContextItem('cut', contextItem)}
-          >
-            <span>剪切</span>
-            <kbd>⌘X</kbd>
-          </button>
-          <button
-            type="button"
-            role="menuitem"
-            disabled={!fileClipboard || !contextPasteTarget}
-            onClick={() => {
-              setContextMenu(null)
-              void startClipboardPaste(contextPasteTarget)
-            }}
-          >
-            <span>{contextItem && isDirectoryLike(contextItem) ? '粘贴到此处' : '粘贴'}</span>
-            <kbd>⌘V</kbd>
-          </button>
-          <button
-            type="button"
-            role="menuitem"
-            disabled={!contextItem}
-            onClick={() => contextItem && void copyContextPath(contextItem)}
-          >
-            <span>复制路径</span>
-            <kbd>⌥⌘C</kbd>
-          </button>
-          <div className="file-context-menu__separator" />
-          <button
-            type="button"
-            role="menuitem"
-            disabled={!contextItem}
-            onClick={() => contextItem && showContextInfo()}
-          >
-            <span>显示简介</span>
-            <kbd>⌘I</kbd>
-          </button>
-          <button
-            type="button"
-            role="menuitem"
-            disabled={!contextItem}
-            onClick={() => requestTrashItem(contextItem)}
-          >
-            <span>移到废纸篓</span>
-            <kbd>⌘⌫</kbd>
-          </button>
-        </div>
-      )}
+            <button
+              type="button"
+              role="menuitem"
+              disabled={!contextItem}
+              onClick={() => contextItem && void openContextItem(contextItem)}
+            >
+              <span>打开</span>
+              <kbd>⌘O</kbd>
+            </button>
+            <button
+              type="button"
+              role="menuitem"
+              disabled={!contextItem}
+              onClick={() => contextItem && void revealContextItem(contextItem)}
+            >
+              <span>在 Finder 中显示</span>
+              <kbd>⌥⌘O</kbd>
+            </button>
+            <div className="file-context-menu__separator" />
+            <button
+              type="button"
+              role="menuitem"
+              disabled={!contextItem}
+              onClick={() => contextItem && copyContextItem('copy', contextItem)}
+            >
+              <span>复制</span>
+              <kbd>⌘C</kbd>
+            </button>
+            <button
+              type="button"
+              role="menuitem"
+              disabled={!contextItem}
+              onClick={() => contextItem && copyContextItem('cut', contextItem)}
+            >
+              <span>剪切</span>
+              <kbd>⌘X</kbd>
+            </button>
+            <button
+              type="button"
+              role="menuitem"
+              disabled={!fileClipboard || !contextPasteTarget}
+              onClick={() => {
+                setContextMenu(null)
+                void startClipboardPaste(contextPasteTarget)
+              }}
+            >
+              <span>{contextItem && isDirectoryLike(contextItem) ? '粘贴到此处' : '粘贴'}</span>
+              <kbd>⌘V</kbd>
+            </button>
+            <button
+              type="button"
+              role="menuitem"
+              disabled={!contextItem}
+              onClick={() => contextItem && void copyContextPath(contextItem)}
+            >
+              <span>复制路径</span>
+              <kbd>⌥⌘C</kbd>
+            </button>
+            <div className="file-context-menu__separator" />
+            <button
+              type="button"
+              role="menuitem"
+              disabled={!contextItem}
+              onClick={() => contextItem && showContextInfo()}
+            >
+              <span>显示简介</span>
+              <kbd>⌘I</kbd>
+            </button>
+            <button
+              type="button"
+              role="menuitem"
+              disabled={!contextItem}
+              onClick={() => requestTrashItem(contextItem)}
+            >
+              <span>移到废纸篓</span>
+              <kbd>⌘⌫</kbd>
+            </button>
+          </div>,
+          document.body
+        )}
       {isDraggingFiles && targetDirectory && (
         <div className="drop-overlay motion-backdrop-enter" aria-hidden="true">
           <Icon name={dropTarget ? 'folder-open' : 'copy-plus'} size={52} />

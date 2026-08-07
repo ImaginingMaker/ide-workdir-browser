@@ -643,8 +643,8 @@
 .file-context-menu {
   --motion-popover-origin: top left;
 
-  position: absolute;
-  z-index: 10;
+  position: fixed;
+  z-index: 120;
   display: flex;
   width: 224px;
   flex-direction: column;
