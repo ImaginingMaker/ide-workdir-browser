@@ -49,7 +49,6 @@ jobs:
         shell: bash
         working-directory: ide-workdir-browser-code
     env:
-      GH_TOKEN: ${{ github.token }}
       APP_UPDATE_REPOSITORY: ${{ github.repository }}
 
     steps:
@@ -75,6 +74,8 @@ jobs:
 
       - name: Detect release recovery
         id: resolve
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           explicit="${{ inputs.explicit_version }}"
           echo "recovery=false" >> "$GITHUB_OUTPUT"
@@ -121,6 +122,8 @@ jobs:
 
       - name: Validate release metadata
         id: metadata
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           version="$(node -p "require('./package.json').version")"
           tag="v${version}"
@@ -213,6 +216,8 @@ jobs:
 
       - name: Generate release notes
         if: ${{ !inputs.dry_run }}
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           {
             echo "> [!WARNING]"
@@ -228,6 +233,8 @@ jobs:
 
       - name: Publish GitHub Release
         if: ${{ !inputs.dry_run }}
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           release_args=(
             "${{ steps.metadata.outputs.tag }}"
