@@ -118,5 +118,5 @@ Release；正式发布使用 GitHub Actions Bot 和原子 push，不需要个人
 [docs/design-decisions.md](docs/design-decisions.md)，桌面回归基线见
 [docs/computer-use-regression.md](docs/computer-use-regression.md)。
 
-当前自动化基线为 62 个测试文件、335 项测试，覆盖率通过语句/行 `90%`、分支/函数 `80%`
+当前自动化基线为 62 个测试文件、336 项测试，覆盖率通过语句/行 `90%`、分支/函数 `80%`
 门禁；具体百分比以后续最新 `npm run check` 输出为准。

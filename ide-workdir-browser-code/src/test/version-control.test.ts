@@ -98,4 +98,12 @@ describe('app version control script', () => {
       runVersionScript(['prerelease', '--preid', 'invalid.value', '--dry-run'])
     ).toThrow()
   })
+
+  it('keeps packaging separate from GitHub Release publishing', () => {
+    const packageJson = JSON.parse(readFileSync('package.json', 'utf8')) as {
+      scripts: Record<string, string>
+    }
+
+    expect(packageJson.scripts['build:mac']).toContain('--publish never')
+  })
 })
